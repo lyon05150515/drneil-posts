@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>drneil.tw 控制台</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2F4A3C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/img/app/panel-apple.png">
+<link rel="icon" type="image/png" sizes="48x48" href="https://drneil.tw/assets/img/app/panel-fav-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://drneil.tw/assets/img/app/panel-fav-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="小思控制台">
+<style>
+:root{--bg:#F4F7F2;--white:#fff;--soft:#E3ECE2;--mid:#8FAE9A;--green:#4F6F5B;--head:#2F4A3C;--ink:#2F3A34;--muted:#6F7C74;--line:#D8E0D6;--warn:#8A3B2E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"PingFang TC","Noto Sans TC",sans-serif}
+header{background:var(--head);color:#fff;padding:16px 28px;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:5}
+header h1{font-size:19px;margin:0;font-weight:600;letter-spacing:.06em}
+header a{color:#B5D4C0;font-size:14px}
+header .sp{flex:1}
+header small{color:#B5C4B8;font-size:13px}
+nav{display:flex;gap:4px;background:var(--white);border-bottom:1px solid var(--line);padding:0 20px;position:sticky;top:58px;z-index:4;overflow-x:auto}
+nav button{border:0;background:none;font:inherit;padding:14px 16px;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.on{color:var(--head);border-color:var(--green);font-weight:600}
+main{max-width:1080px;margin:0 auto;padding:28px 24px 120px}
+section{display:none}
+section.on{display:block}
+h2{font-size:20px;color:var(--head);margin:0 0 6px}
+p.d{color:var(--muted);margin:0 0 18px;font-size:14.5px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:20px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.kpi b{display:block;font-size:30px;color:var(--green);line-height:1.2;font-variant-numeric:tabular-nums}
+.kpi span{font-size:13.5px;color:var(--muted)}
+label{display:block;font-size:14px;font-weight:600;color:var(--head);margin:14px 0 4px}
+input[type=text],input[type=url],input[type=password],textarea,select{width:100%;padding:10px 12px;font:inherit;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+input:focus,textarea:focus{outline:none;border-color:var(--green);background:#fff}
+textarea{resize:vertical;line-height:1.7}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hint{font-size:13.5px;color:var(--muted);margin:4px 0 0}
+button.b{background:var(--green);color:#fff;border:0;border-radius:99px;padding:10px 24px;font:inherit;font-weight:600;cursor:pointer}
+button.b:hover{background:var(--head)}
+button.b.ghost{background:none;color:var(--green);box-shadow:inset 0 0 0 1.5px var(--green)}
+button.b.danger{background:none;color:var(--warn);box-shadow:inset 0 0 0 1.5px var(--warn)}
+button.b.sm{padding:6px 16px;font-size:14px}
+button[disabled]{opacity:.5;cursor:default}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--white);border-top:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;gap:16px;justify-content:center;z-index:6}
+.bar #msg{font-size:14.5px;color:var(--muted)}
+.bar #msg.ok{color:var(--green)} .bar #msg.err{color:var(--warn)}
+.chk{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-weight:400;margin:0;font-size:15.5px;color:var(--ink)}
+.chk input{width:18px;height:18px;accent-color:var(--green)}
+.chk.off span{color:var(--muted);text-decoration:line-through}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td small{color:var(--muted)}
+.meter{height:6px;background:var(--soft);border-radius:3px;margin-top:4px}
+.meter i{display:block;height:6px;background:var(--mid);border-radius:3px}
+svg text{font:11px -apple-system,sans-serif;fill:var(--muted)}
+.qa{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;background:#fff}
+.qa .who{font-size:13.5px;color:var(--muted)}
+.qa .acts{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.tag{display:inline-block;background:var(--soft);color:var(--head);font-size:12.5px;border-radius:99px;padding:1px 10px;margin-left:6px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.seg button{border:0;background:none;font:inherit;font-size:14px;padding:5px 16px;cursor:pointer;color:var(--muted)}
+.seg button.on{background:var(--green);color:#fff}
+
+.pchips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.pchips button{border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:13.5px;padding:4px 14px;border-radius:99px;cursor:pointer}
+.pchips button.on,.pchips button:hover{background:var(--green);border-color:var(--green);color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0 22px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;cursor:pointer;display:flex;flex-direction:column;transition:border-color .2s}
+.pc:hover{border-color:var(--mid)}
+.pc .pdate{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+.pc h3{font-size:17px;line-height:1.5;margin:4px 0 6px;color:var(--head)}
+.pc p{font-size:14.5px;line-height:1.7;margin:0;color:var(--ink);flex:1}
+.pc .ptags{font-size:12.5px;color:var(--green);margin:10px 0 12px}
+.pc .ptags span{margin-right:8px}
+.pc .pacts{display:flex;gap:8px}
+.reader{position:fixed;inset:0;background:rgba(47,58,52,.55);z-index:20;overflow-y:auto;padding:40px 20px}
+.rbox{max-width:720px;margin:0 auto;background:#fff;border-radius:16px;padding:26px 34px 34px}
+.rhead{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted);margin-bottom:14px;flex-wrap:wrap}
+.rhead a.b{text-decoration:none;display:inline-block}
+.rbox h2{font-size:24px;line-height:1.5;margin:0 0 16px}
+#r-body{font-size:17px;line-height:2}
+#r-body p{margin:0 0 1.2em}
+#r-body a{color:var(--green);word-break:break-all}
+.rtags{color:var(--green);font-size:13.5px}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.pgrid{grid-template-columns:1fr}.rbox{padding:20px}}
+.login{position:fixed;inset:0;background:var(--head);z-index:50;display:flex;align-items:center;justify-content:center;padding:24px}
+.login[hidden]{display:none}
+.login form{background:#fff;border-radius:18px;padding:30px 28px;max-width:380px;width:100%;text-align:center}
+.login img{width:84px;height:84px;border-radius:20px;margin-bottom:10px}
+.login h2{margin:0 0 4px}
+.login input{margin:16px 0 12px;text-align:center;font-size:17px;letter-spacing:.04em}
+.login .b{width:100%;padding:12px}
+.login .err{color:var(--warn);font-size:14.5px;min-height:1.4em;margin:8px 0 0}
+header .out{background:none;border:0;color:#B5D4C0;font:inherit;font-size:13.5px;cursor:pointer;text-decoration:underline}
+@media(max-width:700px){header{flex-wrap:wrap;gap:6px 14px;padding:12px 16px}header small{width:100%}nav{top:0;position:static}main{padding:20px 14px 130px}.bar{padding:10px 12px;gap:10px;flex-wrap:wrap}.bar #msg{width:100%;text-align:center}}
+@media(max-width:700px){.kpis{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="login" id="login" hidden><form id="loginf">
+  <img src="../assets/img/app/panel-192.png" alt="">
+  <h2>思思醫師 控制台</h2><p class="d" style="margin:0">請輸入控制台密碼</p>
+  <input type="password" id="pw" autocomplete="current-password" placeholder="控制台密碼">
+  <button class="b" type="submit">登入</button><p class="err" id="lerr"></p>
+</form></div>
+<header><h1>drneil.tw 控制台</h1><a href="https://drneil.tw" target="_blank">打開網站 ↗</a><span class="sp"></span><small id="last"></small><button class="out" id="logout" hidden>登出</button></header>
+<nav id="tabs">
+  <button data-t="dash" class="on">儀表板</button>
+  <button data-t="buy">團購與商品</button>
+  <button data-t="text">首頁與關於我</button>
+  <button data-t="clinic">門診資訊</button>
+  <button data-t="posts">頻道短文</button>
+</nav>
+<main>
+
+<section id="dash" class="on">
+  <div class="seg" id="range"><button data-d="1">今天</button><button data-d="7">7 天</button><button data-d="30" class="on">30 天</button><button data-d="90">90 天</button></div>
+  <div class="kpis">
+    <div class="kpi"><b id="k-tv">–</b><span>今天瀏覽次數</span></div>
+    <div class="kpi"><b id="k-tu">–</b><span>今天瀏覽人數</span></div>
+    <div class="kpi"><b id="k-v">–</b><span id="l-v">期間總瀏覽次數</span></div>
+    <div class="kpi"><b id="k-b">–</b><span id="l-b">期間「本週團購」點擊</span></div>
+  </div>
+  <p class="hint" id="k-old"></p>
+  <div class="card"><h2>每日瀏覽</h2><p class="d">深色＝瀏覽次數，淺色＝瀏覽人數（同一個人一天只算一次）。統計從 2026-10-04 開始。</p><div id="chart"></div></div>
+  <div class="card"><h2>各頁面點擊次數</h2><p class="d" id="top-d">期間內最多人看的 60 個頁面。</p>
+    <table><thead><tr><th>頁面</th><th style="text-align:right">次數</th></tr></thead><tbody id="top"></tbody></table></div>
+</section>
+
+<section id="buy">
+  <div class="card"><h2>本週團購連結</h2>
+    <p class="d">網站上所有「本週團購」按鈕都會先到 drneil.tw/buy/，再跳到這裡設定的網址。</p>
+    <label>要跳去的網址</label><input type="url" id="buy_url" placeholder="留空＝沿用原站的 https://dr-neil.com/buy/">
+    <p class="hint">留空時會跟著原站的團購檔期自動切換（Igris 那套排程照常運作）。填了網址就固定去那裡，直到你清空。</p></div>
+  <div class="card"><h2>推薦商品</h2><p class="d">取消勾選＝暫時不在新網站顯示（原站不受影響）。商品的文字和圖片要到原站後台改，這裡會自動同步。排列順序每次打開網頁都會隨機。</p>
+    <div id="prods"></div></div>
+</section>
+
+<section id="text">
+  <div class="card"><h2>首頁開頭</h2>
+    <label>小標（名字與職稱）</label><input type="text" id="hero_kicker">
+    <div class="row"><div><label>大標第一行</label><input type="text" id="hero_t1"></div><div><label>大標第二行</label><input type="text" id="hero_t2"></div></div>
+    <label>大標下方的說明</label><textarea id="hero_lede" rows="3"></textarea></div>
+  <div class="card"><h2>空腹小雞推廣區</h2><p class="d">顯示在首頁（YouTube 區下面）、每篇文章結尾，以及「斷食」分類文章的開頭。</p>
+    <label class="chk"><input type="checkbox" id="app_on"><span>在網站上顯示</span></label>
+    <div class="row"><div><label>名稱</label><input type="text" id="app_name"></div><div><label>按鈕文字</label><input type="text" id="app_btn"></div></div>
+    <label>一句話標語</label><input type="text" id="app_head">
+    <label>說明（只顯示在首頁）</label><textarea id="app_text" rows="3"></textarea>
+    <label>連結</label><input type="url" id="app_url"></div>
+  <div class="card"><h2>關於我</h2>
+    <div class="row"><div><label>標題第一行</label><input type="text" id="ab_h1"></div><div><label>標題第二行</label><input type="text" id="ab_h2"></div></div>
+    <label>理念（「關於思思」頁最上面那段）</label><textarea id="ab_lead" rows="4"></textarea>
+    <label>自我介紹（每段之間空一行）</label><textarea id="ab_p" rows="8"></textarea>
+    <label>經歷（一行一項，由上到下顯示）</label><textarea id="ab_cv" rows="7"></textarea></div>
+</section>
+
+<section id="clinic">
+  <div class="card"><h2>醫師介紹</h2>
+    <div class="row"><div><label>姓名</label><input type="text" id="d_name"></div><div><label>主要職稱</label><input type="text" id="d_title"></div></div>
+    <label>職稱下方的小字</label><input type="text" id="d_sub">
+    <label>預約提醒（會用醒目的樣式顯示）</label><input type="text" id="d_note"></div>
+  <div class="card"><h2>主要門診</h2><p class="d">會顯示成大卡片，下面有「立即預約」按鈕。</p>
+    <label>診所名稱</label><input type="text" id="c0_name">
+    <div class="row"><div><label>地址</label><input type="text" id="c0_addr"></div><div><label>電話</label><input type="text" id="c0_tel"></div></div>
+    <label>線上預約網址</label><input type="url" id="c0_book"></div>
+  <div class="card"><h2>兼任門診</h2><p class="d">用比較不顯眼的小卡片顯示。</p>
+    <label>診所名稱</label><input type="text" id="c1_name">
+    <div class="row"><div><label>地址</label><input type="text" id="c1_addr"></div><div><label>電話</label><input type="text" id="c1_tel"></div></div></div>
+</section>
+
+<section id="posts">
+  <h2>頻道短文</h2>
+  <p class="d">跟原本網站上的短文頁一樣可以搜尋、按標籤篩選、點開看全文。這裡只有你看得到；網站上不公開列出，Google 也不收錄。要分享給誰就按「複製連結」。</p>
+  <p class="d"><b>全部短文的總覽連結</b>：拿到這個連結的人可以看到所有短文（網站上找不到這一頁）。
+    <button class="b ghost" id="ix-copy" type="button">複製總覽連結</button> <a id="ix-open" target="_blank" rel="noopener">打開</a></p>
+  <input type="text" id="pq" placeholder="搜尋短文（例如：胰島素、睡眠、鎂）">
+  <div class="pchips" id="pchips"></div>
+  <p class="hint" id="pcount"></p>
+  <div class="pgrid" id="plist"></div>
+  <p style="text-align:center"><button class="b ghost" id="pmore" hidden>載入更多</button></p>
+</section>
+
+<div class="reader" id="reader" hidden><div class="rbox">
+  <div class="rhead"><span id="r-date"></span><span class="sp"></span>
+    <button class="b sm" id="r-copy">複製連結</button><a class="b sm ghost" id="r-open" target="_blank">在網站打開 ↗</a><button class="b sm ghost" id="r-close">關閉</button></div>
+  <h2 id="r-title"></h2><div id="r-body"></div><p class="rtags" id="r-tags"></p><p class="hint" id="r-url"></p>
+</div></div>
+
+</main>
+<div class="bar"><span id="msg"></span><button class="b ghost" id="sync">立即同步網站</button><button class="b" id="save">儲存並發布</button></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = null;
+const post = (u, b) => fetch(u, {method:'POST', headers:{'Content-Type':'application/json','X-Panel':'1'}, body: JSON.stringify(b || {})}).then(r => r.json());
+
+// ── 本機版（127.0.0.1）直接跟這台 Mac 講話；遠端版（drneil.tw/panel/）透過原站 WordPress 轉交 ──
+// 遠端版的「儲存」是把修改放進待辦，Mac 上的 Vision 約 30 秒內拿去執行。
+const REMOTE = !['127.0.0.1', 'localhost'].includes(location.hostname);
+
+// 手機會一直用舊的快取頁面：每次打開／切回來就比對版本，有新版就強制重新載入
+const PANEL_V = '390074e719c5';
+async function checkVersion() {
+  if (!REMOTE) return;
+  try {
+    const v = (await (await fetch('version.txt?' + Date.now(), {cache: 'no-store'})).text()).trim();
+    if (!/^[0-9a-f]{12}$/.test(v) || v === PANEL_V || sessionStorage.getItem('dnPanelReloaded') === v) return;
+    sessionStorage.setItem('dnPanelReloaded', v);   // 同一版只重載一次，避免無限迴圈
+    await fetch(location.href, {cache: 'reload'});
+    location.reload();
+  } catch (e) {}
+}
+checkVersion();
+document.addEventListener('visibilitychange', () => { if (!document.hidden) checkVersion(); });
+const WP = 'https://drneil-api.drneil-tw.workers.dev/panel/';   // Cloudflare Worker（cloudflare/worker.js），2026-10-05 起不再經過舊站
+let TOKEN = '';
+try { TOKEN = localStorage.getItem('dnPanelToken') || ''; } catch (e) {}
+async function rpc(name, body){
+  const r = await fetch(WP + name, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(Object.assign({token: TOKEN}, body || {}))});
+  if (r.status === 401 || r.status === 403) { const e = new Error('auth'); e.auth = true; throw e; }
+  if (!r.ok) throw new Error('伺服器回應 ' + r.status);
+  return r.json();
+}
+function askLogin(m){ $('login').hidden = false; $('lerr').textContent = m || ''; setTimeout(() => $('pw').focus(), 50); }
+let TITLES = {};
+async function apiState(){
+  if (!REMOTE) return fetch('/api/state').then(r => r.json());
+  const d = await rpc('state'); const st = JSON.parse(d.state || '{}'); st._pending = d.pending; TITLES = st.titles || {}; return st;
+}
+async function apiStats(days){
+  if (!REMOTE) return fetch('/api/stats?days=' + days).then(r => r.json());
+  const raw = await rpc('stats', {days}); const pages = {};
+  raw.forEach(d => Object.entries(d.pages || {}).forEach(([p, n]) => { try { p = decodeURIComponent(p); } catch (e) {} pages[p] = (pages[p] || 0) + n; }));
+  const top = Object.entries(pages).sort((a, b) => b[1] - a[1]).slice(0, 60);
+  return {days: raw.slice().reverse().map(d => ({day: d.day, views: d.views, visitors: d.visitors, old: d.old || 0})),
+          top: top.map(([p, n]) => ({path: p, title: TITLES[p] || p, views: n})), buy_clicks: pages['/buy/'] || 0};
+}
+async function apiPosts(){ if (!REMOTE) return fetch('/api/posts').then(r => r.json()); return JSON.parse((await rpc('posts')).posts || '[]'); }
+async function apiSave(body){
+  if (!REMOTE) return post('/api/save', body);
+  await rpc('save', {data: Object.assign({action: 'save'}, body)}); return waitApplied();
+}
+async function apiSync(){
+  if (!REMOTE) return post('/api/sync');
+  await rpc('save', {data: {action: 'sync'}}); return waitApplied();
+}
+async function waitApplied(){
+  // 等這台 Mac 把待辦拿走並做完（最多等 3 分鐘）
+  for (let i = 0; i < 36; i++) {
+    await new Promise(r => setTimeout(r, 5000));
+    msg('已送出，等網站那邊處理中…（' + (i + 1) * 5 + ' 秒）');
+    const d = await rpc('state').catch(() => null);
+    if (d && !d.pending) return {ok: true};
+  }
+  return {ok: false, message: '送出了，但 3 分鐘內沒有被處理。可能是家裡那台 Mac 沒開機或沒網路；它恢復後會自動套用。'};
+}
+function msg(t, cls){ const m = $('msg'); m.textContent = t; m.className = cls || ''; }
+
+document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#tabs button').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('main section').forEach(s => s.classList.toggle('on', s.id === b.dataset.t));
+  $('save').style.display = ['dash','posts'].includes(b.dataset.t) ? 'none' : '';
+});
+$('save').style.display = 'none';
+
+function fill(){
+  const c = S.content, cl = c.clinics;
+  $('last').textContent = '最近一次發布：' + S.last_publish;
+  if (S.tg_index) { $('ix-open').href = S.tg_index; $('ix-copy').onclick = () => copyLink($('ix-copy'), S.tg_index); }
+  $('buy_url').value = S.config.buy_url || '';
+  $('prods').innerHTML = S.products.map(p => `<label class="chk ${p.hidden?'off':''}"><input type="checkbox" data-id="${p.id}" ${p.hidden?'':'checked'}><span>${esc(p.name)}</span></label>`).join('');
+  $('prods').querySelectorAll('input').forEach(i => i.onchange = () => i.parentNode.classList.toggle('off', !i.checked));
+  $('hero_kicker').value = c.hero.kicker; $('hero_t1').value = c.hero.title_line1; $('hero_t2').value = c.hero.title_line2; $('hero_lede').value = c.hero.lede;
+  const ap = c.app || {};
+  $('app_on').checked = !!ap.enabled; $('app_name').value = ap.name || ''; $('app_btn').value = ap.button || '';
+  $('app_head').value = ap.headline || ''; $('app_text').value = ap.text || ''; $('app_url').value = ap.url || '';
+  $('ab_h1').value = c.about.headline_line1; $('ab_h2').value = c.about.headline_line2; $('ab_lead').value = c.about.lead;
+  $('ab_p').value = c.about.paragraphs.join('\n\n'); $('ab_cv').value = c.about.cv.join('\n');
+  $('d_name').value = c.doctor.name; $('d_title').value = c.doctor.title; $('d_sub').value = c.doctor.subtitle; $('d_note').value = c.doctor.note;
+  $('c0_name').value = cl[0].name; $('c0_addr').value = cl[0].address; $('c0_tel').value = cl[0].phone; $('c0_book').value = cl[0].booking_url || '';
+  const s = cl[1] || {name:'',address:'',phone:''};
+  $('c1_name').value = s.name; $('c1_addr').value = s.address; $('c1_tel').value = s.phone;
+}
+
+function collect(){
+  const lines = v => v.split('\n').map(s => s.trim()).filter(Boolean);
+  const c = JSON.parse(JSON.stringify(S.content));
+  c.hero = {kicker: $('hero_kicker').value.trim(), title_line1: $('hero_t1').value.trim(), title_line2: $('hero_t2').value.trim(), lede: $('hero_lede').value.trim()};
+  c.about = {headline_line1: $('ab_h1').value.trim(), headline_line2: $('ab_h2').value.trim(), lead: $('ab_lead').value.trim(),
+             paragraphs: $('ab_p').value.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean), cv: lines($('ab_cv').value)};
+  c.app = {enabled: $('app_on').checked, name: $('app_name').value.trim(), headline: $('app_head').value.trim(),
+           text: $('app_text').value.trim(), button: $('app_btn').value.trim(), url: $('app_url').value.trim()};
+  c.doctor = {name: $('d_name').value.trim(), title: $('d_title').value.trim(), subtitle: $('d_sub').value.trim(), note: $('d_note').value.trim()};
+  c.clinics = [{name: $('c0_name').value.trim(), address: $('c0_addr').value.trim(), phone: $('c0_tel').value.trim(), booking_url: $('c0_book').value.trim()}];
+  if ($('c1_name').value.trim()) c.clinics.push({name: $('c1_name').value.trim(), address: $('c1_addr').value.trim(), phone: $('c1_tel').value.trim(), booking_url: ''});
+  return {config: {buy_url: $('buy_url').value.trim()},
+          hidden_products: [...$('prods').querySelectorAll('input:not(:checked)')].map(i => Number(i.dataset.id)), content: c};
+}
+
+$('save').onclick = async () => {
+  $('save').disabled = true; msg('儲存並發布中，大約 20 秒…');
+  const r = await apiSave(collect()).catch(e => ({ok:false, message: e.auth ? '登入過期，請重新整理後再登入' : String(e)}));
+  msg(r.ok ? '已發布，約 1 分鐘後網站上看得到。' : '沒有儲存：' + r.message, r.ok ? 'ok' : 'err');
+  $('save').disabled = false; if (r.ok) load();
+};
+$('sync').onclick = async () => {
+  $('sync').disabled = true; msg('同步中…');
+  const r = await apiSync().catch(e => ({ok:false, message: e.auth ? '登入過期，請重新整理後再登入' : String(e)}));
+  msg(r.ok ? '同步完成。' : '同步失敗：' + r.message, r.ok ? 'ok' : 'err'); $('sync').disabled = false; load();
+};
+
+async function load(){ S = await apiState(); fill(); }
+
+async function loadStats(days){
+  let d;
+  try { d = await apiStats(days); } catch (e) { d = {error: String(e)}; }
+  if (d.error) { $('chart').innerHTML = '<p class="d">統計讀取失敗：' + esc(d.error) + '</p>'; return; }
+  const n = v => Number(v).toLocaleString();
+  const today = d.days[d.days.length - 1] || {views:0, visitors:0};
+  $('k-tv').textContent = n(today.views); $('k-tu').textContent = n(today.visitors);
+  $('k-v').textContent = n(d.days.reduce((s, x) => s + x.views, 0)); $('k-b').textContent = n(d.buy_clicks);
+  const tot = d.days.reduce((s, x) => s + x.views, 0), old = d.days.reduce((s, x) => s + (x.old || 0), 0);
+  $('k-old').textContent = '從舊網域 dr-neil.com 轉來：' + n(old) + ' 次' + (tot ? '，佔瀏覽的 ' + (old / tot * 100).toFixed(1) + '%' : '') + '。（這項從 2026-10-05 開始記）';
+  const one = Number(days) === 1;
+  $('l-v').textContent = one ? '今天總瀏覽次數' : '期間總瀏覽次數';
+  $('l-b').textContent = one ? '今天「本週團購」點擊' : '期間「本週團購」點擊';
+  $('top-d').textContent = one ? '今天最多人看的頁面。' : '期間內最多人看的 60 個頁面。';
+  const W = 940, H = 220, P = 28, max = Math.max(1, ...d.days.map(x => x.views)), bw = (W - P * 2) / d.days.length;
+  const step = Math.ceil(d.days.length / 10);
+  $('chart').innerHTML = `<svg viewBox="0 0 ${W} ${H + 24}" width="100%" role="img" aria-label="每日瀏覽次數與人數長條圖">`
+    + `<line x1="${P}" y1="${H}" x2="${W - P}" y2="${H}" stroke="#D8E0D6"/><text x="${P}" y="12">最高 ${n(max)}</text>`
+    + d.days.map((x, i) => { const X = P + i * bw, hv = x.views / max * (H - 24), hu = x.visitors / max * (H - 24), w = Math.min(60, Math.max(2, bw * .7));
+        return `<g><title>${x.day.slice(4,6)}/${x.day.slice(6)}：${x.views} 次／${x.visitors} 人</title>`
+          + `<rect x="${X}" y="${H - hv}" width="${w}" height="${hv}" fill="#4F6F5B" rx="2"/>`
+          + `<rect x="${X}" y="${H - hu}" width="${w}" height="${hu}" fill="#B9D3C1" rx="2"/>`
+          + (i % step === 0 ? `<text x="${X}" y="${H + 16}">${x.day.slice(4,6)}/${x.day.slice(6)}</text>` : '') + `</g>`; }).join('') + `</svg>`;
+  const m = Math.max(1, ...d.top.map(x => x.views));
+  $('top').innerHTML = d.top.map(x => `<tr><td>${esc(x.title)}<br><small>${esc(x.path)}</small><div class="meter"><i style="width:${x.views / m * 100}%"></i></div></td><td class="n">${n(x.views)}</td></tr>`).join('')
+    || '<tr><td colspan="2" class="d">還沒有資料。</td></tr>';
+}
+document.querySelectorAll('#range button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#range button').forEach(x => x.classList.toggle('on', x === b)); loadStats(b.dataset.d); });
+
+let POSTS = [], pTag = '', pShown = 0, pView = [];
+const PPAGE = 12;
+function pcard(p){
+  return `<article class="pc" data-id="${p.id}"><div class="pdate">${esc(p.date)}</div><h3>${esc(p.title)}</h3>
+    <p>${esc(p.text.replace(/\s+/g, ' ').slice(0, 92))}…</p>
+    <div class="ptags">${p.tags.slice(0, 4).map(t => '<span>#' + esc(t) + '</span>').join('')}</div>
+    <div class="pacts"><button class="b sm" data-copy="${esc(p.url)}">複製連結</button><button class="b sm ghost" data-read="${p.id}">看全文</button></div></article>`;
+}
+function bindCards(){
+  $('plist').querySelectorAll('[data-copy]').forEach(b => b.onclick = e => { e.stopPropagation(); copyLink(b, b.dataset.copy); });
+  $('plist').querySelectorAll('.pc').forEach(c => c.onclick = () => openReader(Number(c.dataset.id)));
+}
+function copyLink(b, u){ navigator.clipboard.writeText(u).then(() => { const t = b.textContent; b.textContent = '已複製'; setTimeout(() => b.textContent = t, 1500); }); }
+function renderPosts(reset){
+  if (reset) { pShown = 0; $('plist').innerHTML = ''; }
+  const s = pView.slice(pShown, pShown + PPAGE);
+  $('plist').insertAdjacentHTML('beforeend', s.map(pcard).join(''));
+  pShown += s.length; $('pmore').hidden = pShown >= pView.length;
+  $('pcount').textContent = pView.length + ' 則短文' + (pTag || $('pq').value.trim() ? '（已篩選）' : '');
+  if (!pView.length) $('plist').innerHTML = '<p class="d">找不到符合的短文。</p>';
+  bindCards();
+}
+function applyPosts(){
+  const kw = $('pq').value.trim().toLowerCase();
+  pView = POSTS.filter(p => (!pTag || p.tags.includes(pTag)) && (!kw || (p.title + ' ' + p.text).toLowerCase().includes(kw)));
+  document.querySelectorAll('#pchips button').forEach(b => b.classList.toggle('on', b.dataset.tag === pTag));
+  renderPosts(true);
+}
+function linkify(s){ return s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank">$1</a>'); }
+function openReader(id){
+  const p = POSTS.find(x => x.id === id); if (!p) return;
+  $('r-date').textContent = p.date; $('r-title').textContent = p.title;
+  $('r-body').innerHTML = p.text.split(/\n\s*\n/).map(x => '<p>' + linkify(esc(x.trim())).replace(/\n/g, '<br>') + '</p>').join('');
+  $('r-tags').textContent = p.tags.map(t => '#' + t).join(' '); $('r-url').textContent = p.url;
+  $('r-open').href = p.url; $('r-copy').onclick = () => copyLink($('r-copy'), p.url);
+  $('reader').hidden = false; document.body.style.overflow = 'hidden';
+}
+function closeReader(){ $('reader').hidden = true; document.body.style.overflow = ''; }
+$('r-close').onclick = closeReader;
+$('reader').onclick = e => { if (e.target.id === 'reader') closeReader(); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeReader(); });
+$('pq').oninput = applyPosts;
+$('pmore').onclick = () => renderPosts(false);
+const loadPosts = () => apiPosts().then(d => {
+  POSTS = d;
+  const cnt = {}; d.forEach(p => p.tags.forEach(t => cnt[t] = (cnt[t] || 0) + 1));
+  const top = Object.entries(cnt).filter(x => x[1] >= 3).sort((a, b) => b[1] - a[1]).slice(0, 18);
+  $('pchips').innerHTML = '<button data-tag="" class="on">全部</button>' + top.map(([t, n]) => `<button data-tag="${esc(t)}">${esc(t)} (${n})</button>`).join('');
+  document.querySelectorAll('#pchips button').forEach(b => b.onclick = () => { pTag = b.dataset.tag; applyPosts(); });
+  applyPosts();
+});
+
+async function start(){
+  try { await load(); } catch (e) {
+    if (e.auth) return askLogin(TOKEN ? '密碼不對，或太久沒登入了' : '');
+    return msg('讀不到資料：' + e.message, 'err');
+  }
+  $('login').hidden = true; $('logout').hidden = !REMOTE;
+  loadStats(30); loadPosts();
+}
+$('loginf').onsubmit = e => {
+  e.preventDefault(); TOKEN = $('pw').value.trim();
+  try { localStorage.setItem('dnPanelToken', TOKEN); } catch (x) {}
+  $('lerr').textContent = '登入中…'; start();
+};
+$('logout').onclick = () => { try { localStorage.removeItem('dnPanelToken'); } catch (x) {} location.reload(); };
+if (REMOTE && !TOKEN) askLogin(); else start();
+</script>
+</body>
+</html>

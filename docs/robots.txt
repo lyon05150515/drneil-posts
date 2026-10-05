@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://drneil.tw/sitemap.xml
