@@ -1596,7 +1596,7 @@ html[data-theme="dark"] .cg{--bg:#0F1A18; --white:#172623; --soft:#1A2D29; --sof
   .cg-warn{padding:20px 20px}
 }
 
-/* ── 全站搜尋 ── */
+/* ── 全站搜尋（放大鏡在頁首，搜尋頁在 /search/）── */
 @media (max-width:900px){ .hsearch{margin-left:auto} .hsearch + .theme{margin-left:0} }
 .search h1{font-family:"Noto Serif TC","Songti TC",serif; font-weight:600; font-size:30px; margin:0 0 22px; color:var(--head)}
 .search mark{background:color-mix(in srgb,var(--green) 22%,transparent); color:inherit; border-radius:3px; padding:0 1px}
