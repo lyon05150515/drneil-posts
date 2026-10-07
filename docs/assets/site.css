@@ -1624,3 +1624,22 @@ html[data-theme="dark"] .subbox .msg{color:#F0A08C}
 article.post .subbox{margin:36px 0 8px}
 @media (max-width:900px){ .subbox{grid-template-columns:1fr; gap:18px; padding:24px 20px} .subbox .row{flex-direction:column} .subbox .btn{width:100%; text-align:center} }
 article.post .subbox{grid-template-columns:1fr; gap:16px}
+
+/* 新雨農場客製訂購表單（build.py render_newrain；green-only，配合全站色票） */
+.nr-order .nr-form,.nr-order .nr-done{max-width:560px;margin:22px auto 0;background:var(--white);
+  border:1px solid var(--line);border-radius:var(--r);padding:22px 20px}
+.nr-order .nr-q{margin:0 0 14px}
+.nr-order .nr-q label{display:block;font-weight:600;color:var(--head);margin:0 0 6px;font-size:15px;line-height:1.5}
+.nr-order .nr-q .req{color:#b5462f;font-weight:700}
+.nr-order select,.nr-order input,.nr-order textarea{width:100%;box-sizing:border-box;font:inherit;
+  color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.nr-order select:focus,.nr-order input:focus,.nr-order textarea:focus{outline:none;border-color:var(--green);background:var(--white)}
+.nr-order textarea{resize:vertical}
+.nr-order .nr-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.nr-order .nr-bank{margin:18px 0 6px;padding:14px 16px;background:var(--soft-2);border-radius:12px;
+  color:var(--ink);font-size:14.5px;line-height:1.7}
+.nr-order .nr-bank b{color:var(--head)}
+.nr-order .nr-msg{min-height:1.2em;margin:10px 0 0;color:#b5462f;font-size:14px}
+.nr-order button[type=submit]{margin-top:16px;width:100%}
+.nr-order .nr-done h3{color:var(--green);margin:0 0 10px}
+.nr-order .nr-done .nr-code{color:var(--green);font-size:18px;letter-spacing:.04em}
