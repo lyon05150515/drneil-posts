@@ -229,6 +229,9 @@ footer.site .soc a{margin:0 12px; color:#F3F6F1; font-weight:500; letter-spacing
 footer.site .soc a:hover{color:var(--mid)}
 footer.site .disc{margin:6px 0; color:#B5C4B8}
 footer.site .copy{margin:0; font-size:13.5px; color:#8FA595}
+footer.site .cite-link{margin:8px 0 0; font-size:12.5px}
+footer.site .cite-link a{color:#8FA595; text-decoration:underline; text-underline-offset:2px; letter-spacing:.02em}
+footer.site .cite-link a:hover{color:#D5DED6}
 
 /* ── 手機 ── */
 @media (max-width:900px){
@@ -336,6 +339,8 @@ footer.site{padding-bottom:96px}
 .ask .btn{margin:0}
 .ask .btn[disabled]{opacity:.6; cursor:default}
 .ask .fine{font-size:14px; color:var(--muted); margin:18px 0 0; line-height:1.7}
+.ask .rq{color:#B4472E; font-weight:700; margin-left:2px}
+.ask .done{font-size:17px; color:var(--head); text-align:center; padding:24px 0; line-height:1.9}
 .askok{text-align:center; padding:30px 0}
 @media (max-width:900px){ .ask .row{grid-template-columns:1fr; gap:0} }
 
