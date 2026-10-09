@@ -128,10 +128,10 @@ header .out{background:none;border:0;color:#B5D4C0;font:inherit;font-size:13.5px
     <div class="kpi"><b id="k-tu">–</b><span>今天瀏覽人數</span></div>
     <div class="kpi"><b id="k-v">–</b><span id="l-v">期間總瀏覽次數</span></div>
     <div class="kpi"><b id="k-b">–</b><span id="l-b">期間「本週團購」點擊</span></div>
-    <div class="kpi" id="kpi-sub" style="cursor:pointer" title="點一下看訂閱的 email"><b id="k-sub">–</b><span>好朋友週信訂閱人數 ▾</span></div>
+    <div class="kpi" id="kpi-sub" style="cursor:pointer" title="點一下看訂閱的 email"><b id="k-sub">–</b><span>好朋友早餐信訂閱人數 ▾</span></div>
     <div class="kpi" id="kpi-cite" style="cursor:pointer" title="點一下看媒體引用申請"><b id="k-cite">–</b><span>待處理引用申請 ▾</span></div>
   </div>
-  <div class="card" id="sub-card" hidden><h2>好朋友週信訂閱名單</h2>
+  <div class="card" id="sub-card" hidden><h2>好朋友早餐信訂閱名單</h2>
     <p class="d" id="sub-d">點上面的「訂閱人數」可收合。</p>
     <table><thead><tr><th>Email</th><th>訂閱時間</th><th>狀態</th></tr></thead><tbody id="sub-list"></tbody></table></div>
   <div class="card" id="cite-card" hidden><h2>媒體引用／轉載申請</h2>
@@ -216,7 +216,7 @@ const post = (u, b) => fetch(u, {method:'POST', headers:{'Content-Type':'applica
 const REMOTE = !['127.0.0.1', 'localhost'].includes(location.hostname);
 
 // 手機會一直用舊的快取頁面：每次打開／切回來就比對版本，有新版就強制重新載入
-const PANEL_V = '9e0242464c5d';
+const PANEL_V = '4d4e08da3935';
 async function checkVersion() {
   if (!REMOTE) return;
   try {

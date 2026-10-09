@@ -62,7 +62,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   <button onclick="navigator.clipboard.writeText('https://drneil.tw/2026/01/06/psyllium-husk/').then(()=>{this.textContent='已複製連結'})">複製連結</button>
 </div>
   <div class="subbox" id="join" data-src="post">
-  <div class="txt"><h2>好朋友週信</h2>
+  <div class="txt"><h2>好朋友早餐信</h2>
   <p>一週一封：《健康駭客週報》這集的研究重點，加上家醫專欄這週的新文章。免費，隨時可以退訂。</p></div>
   <form novalidate>
     <div class="row"><input type="email" name="email" placeholder="你的 Email" autocomplete="email" aria-label="Email" required>
@@ -142,7 +142,7 @@ document.querySelectorAll('.subbox').forEach(function(box){
     fetch('https://drneil-api.drneil-tw.workers.dev/subscribe', {method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({email: email, agree: true, src: box.dataset.src, website: f.website.value})})
       .then(function(r){ return r.json(); }).then(function(d){
-        if (d && d.ok){ f.innerHTML = '<p class="done">訂閱成功，謝謝你。週信開始寄送時，你會收到第一封。</p>'; }
+        if (d && d.ok){ f.innerHTML = '<p class="done">訂閱成功，謝謝你。早餐信每週六早上寄出，你會收到第一封。</p>'; }
         else { btn.disabled = false; msg.textContent = '請確認 Email 有沒有打錯'; }
       }).catch(function(){ btn.disabled = false; msg.textContent = '送出失敗，請稍後再試一次'; });
   });
