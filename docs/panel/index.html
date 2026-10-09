@@ -129,10 +129,14 @@ header .out{background:none;border:0;color:#B5D4C0;font:inherit;font-size:13.5px
     <div class="kpi"><b id="k-v">–</b><span id="l-v">期間總瀏覽次數</span></div>
     <div class="kpi"><b id="k-b">–</b><span id="l-b">期間「本週團購」點擊</span></div>
     <div class="kpi" id="kpi-sub" style="cursor:pointer" title="點一下看訂閱的 email"><b id="k-sub">–</b><span>好朋友週信訂閱人數 ▾</span></div>
+    <div class="kpi" id="kpi-cite" style="cursor:pointer" title="點一下看媒體引用申請"><b id="k-cite">–</b><span>待處理引用申請 ▾</span></div>
   </div>
   <div class="card" id="sub-card" hidden><h2>好朋友週信訂閱名單</h2>
     <p class="d" id="sub-d">點上面的「訂閱人數」可收合。</p>
     <table><thead><tr><th>Email</th><th>訂閱時間</th><th>狀態</th></tr></thead><tbody id="sub-list"></tbody></table></div>
+  <div class="card" id="cite-card" hidden><h2>媒體引用／轉載申請</h2>
+    <p class="d" id="cite-d">記者或機構在 drneil.tw/cite/ 提出的申請。請親自審核後以 Email 回覆；處理完可按「標記已處理」。</p>
+    <div id="cite-list"></div></div>
   <p class="hint" id="k-old"></p>
   <div class="card"><h2>每日瀏覽</h2><p class="d">深色＝瀏覽次數，淺色＝瀏覽人數（同一個人一天只算一次）。統計從 2026-10-04 開始。</p><div id="chart"></div></div>
   <div class="card"><h2>各頁面點擊次數</h2><p class="d" id="top-d">期間內最多人看的 60 個頁面。</p>
@@ -212,7 +216,7 @@ const post = (u, b) => fetch(u, {method:'POST', headers:{'Content-Type':'applica
 const REMOTE = !['127.0.0.1', 'localhost'].includes(location.hostname);
 
 // 手機會一直用舊的快取頁面：每次打開／切回來就比對版本，有新版就強制重新載入
-const PANEL_V = 'ad2ec599947f';
+const PANEL_V = '9e0242464c5d';
 async function checkVersion() {
   if (!REMOTE) return;
   try {
@@ -250,6 +254,11 @@ async function apiStats(days){
 }
 async function apiPosts(){ if (!REMOTE) return fetch('/api/posts').then(r => r.json()); return JSON.parse((await rpc('posts')).posts || '[]'); }
 async function apiSubs(){ if (!REMOTE) return fetch('/api/subscribers').then(r => r.json()); return rpc('subscribers'); }
+async function apiCite(){ if (!REMOTE) return fetch('/api/citations').then(r => r.json()); return rpc('cite'); }
+async function apiCiteMark(ids){
+  if (!REMOTE) return post('/api/cite/mark', {ids: ids, field: 'handled'});
+  return rpc('cite/mark', {ids: ids, field: 'handled'});
+}
 async function apiSave(body){
   if (!REMOTE) return post('/api/save', body);
   await rpc('save', {data: Object.assign({action: 'save'}, body)}); return waitApplied();
@@ -281,6 +290,7 @@ function fill(){
   const c = S.content, cl = c.clinics;
   $('last').textContent = '最近一次發布：' + S.last_publish;
   $('k-sub').textContent = (S.subscribers == null) ? '—' : Number(S.subscribers).toLocaleString();
+  $('k-cite').textContent = (S.citations == null) ? '—' : Number(S.citations).toLocaleString();
   if (S.tg_index) { $('ix-open').href = S.tg_index; $('ix-copy').onclick = () => copyLink($('ix-copy'), S.tg_index); }
   $('buy_url').value = S.config.buy_url || '';
   $('prods').innerHTML = S.products.map(p => `<label class="chk ${p.hidden?'off':''}"><input type="checkbox" data-id="${p.id}" ${p.hidden?'':'checked'}><span>${esc(p.name)}</span></label>`).join('');
@@ -425,6 +435,38 @@ async function loadSubs(){
 $('kpi-sub').onclick = () => {
   const c = $('sub-card'); c.hidden = !c.hidden;
   if (!c.hidden && !SUBS_LOADED) { SUBS_LOADED = true; loadSubs(); }
+};
+
+let CITE_LOADED = false;
+function citeCard(c){
+  const line = (lbl, v) => v ? `<p style="margin:3px 0"><b>${lbl}：</b>${esc(String(v))}</p>` : '';
+  const done = c.handled ? ' style="opacity:.55"' : '';
+  const btn = c.handled ? '<span class="tag">已處理</span>'
+    : `<button class="btn ghost cite-done" data-id="${c.id}" style="padding:6px 14px;font-size:14px">標記已處理</button>`;
+  return `<div class="citerow"${done} style="border:1px solid var(--line,#dfe6df);border-radius:12px;padding:14px 16px;margin:10px 0">
+    <p style="margin:0 0 6px"><b>${esc(c.org || '')}</b> <span class="d" style="font-weight:400">${esc((c.ts||'').slice(0,16))}</span></p>
+    ${line('聯絡人', c.contact)}${line('Email', c.email)}${line('電話', c.phone)}
+    ${line('想引用的文章', c.articles)}${line('用途與平台', c.platform)}${line('預計刊登', c.use_date)}${line('補充', c.note)}
+    <div style="margin-top:8px">${btn}</div></div>`;
+}
+async function loadCite(){
+  $('cite-d').textContent = '讀取中…';
+  try {
+    const d = await apiCite();
+    const rows = d.rows || [];
+    $('cite-list').innerHTML = rows.map(citeCard).join('') || '<p class="d">目前沒有引用申請。</p>';
+    const pend = rows.filter(r => !r.handled).length;
+    $('cite-d').textContent = `待處理 ${pend} 件，含已處理共 ${rows.length} 件。處理完（已回覆）請按「標記已處理」。`;
+    document.querySelectorAll('.cite-done').forEach(b => b.onclick = async () => {
+      b.disabled = true; b.textContent = '處理中…';
+      try { await apiCiteMark([Number(b.dataset.id)]); CITE_LOADED = false; loadCite(); load(); }
+      catch (e) { b.disabled = false; b.textContent = '標記已處理'; alert('標記失敗：' + e); }
+    });
+  } catch (e) { $('cite-d').textContent = '讀取失敗：' + esc(String(e)); }
+}
+$('kpi-cite').onclick = () => {
+  const c = $('cite-card'); c.hidden = !c.hidden;
+  if (!c.hidden && !CITE_LOADED) { CITE_LOADED = true; loadCite(); }
 };
 
 async function start(){
