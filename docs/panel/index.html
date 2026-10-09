@@ -128,6 +128,7 @@ header .out{background:none;border:0;color:#B5D4C0;font:inherit;font-size:13.5px
     <div class="kpi"><b id="k-tu">–</b><span>今天瀏覽人數</span></div>
     <div class="kpi"><b id="k-v">–</b><span id="l-v">期間總瀏覽次數</span></div>
     <div class="kpi"><b id="k-b">–</b><span id="l-b">期間「本週團購」點擊</span></div>
+    <div class="kpi"><b id="k-sub">–</b><span>好朋友週信訂閱人數</span></div>
   </div>
   <p class="hint" id="k-old"></p>
   <div class="card"><h2>每日瀏覽</h2><p class="d">深色＝瀏覽次數，淺色＝瀏覽人數（同一個人一天只算一次）。統計從 2026-10-04 開始。</p><div id="chart"></div></div>
@@ -208,7 +209,7 @@ const post = (u, b) => fetch(u, {method:'POST', headers:{'Content-Type':'applica
 const REMOTE = !['127.0.0.1', 'localhost'].includes(location.hostname);
 
 // 手機會一直用舊的快取頁面：每次打開／切回來就比對版本，有新版就強制重新載入
-const PANEL_V = '390074e719c5';
+const PANEL_V = '7461e0c8e270';
 async function checkVersion() {
   if (!REMOTE) return;
   try {
@@ -275,6 +276,7 @@ $('save').style.display = 'none';
 function fill(){
   const c = S.content, cl = c.clinics;
   $('last').textContent = '最近一次發布：' + S.last_publish;
+  $('k-sub').textContent = (S.subscribers == null) ? '—' : Number(S.subscribers).toLocaleString();
   if (S.tg_index) { $('ix-open').href = S.tg_index; $('ix-copy').onclick = () => copyLink($('ix-copy'), S.tg_index); }
   $('buy_url').value = S.config.buy_url || '';
   $('prods').innerHTML = S.products.map(p => `<label class="chk ${p.hidden?'off':''}"><input type="checkbox" data-id="${p.id}" ${p.hidden?'':'checked'}><span>${esc(p.name)}</span></label>`).join('');
