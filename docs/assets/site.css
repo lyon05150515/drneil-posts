@@ -408,6 +408,17 @@ footer.site .soc{display:flex; flex-wrap:wrap; justify-content:center; gap:6px 2
 footer.site .soc a{margin:0}
 
 /* ── 空腹小雞推廣 ── */
+/* 首頁限時團購預告帶（只在首頁，不碰文章頁） */
+.promoband{background:var(--deep); color:#F3F6F1; padding:11px 0}
+.promoband .wrap{display:flex; align-items:center; justify-content:center; gap:7px 14px; flex-wrap:wrap; text-align:center}
+.promoband .pb-tag{background:#E9A46A; color:#4B2610; font-weight:700; font-size:12.5px; padding:3px 11px; border-radius:99px; letter-spacing:.06em; white-space:nowrap}
+.promoband .pb-name{font-weight:700; font-size:16px; letter-spacing:.03em}
+.promoband .pb-note{font-size:13.5px; color:#CBD9CD}
+.promoband .pb-cta{font-size:15px; font-weight:600}
+.promoband .pb-cta.soon{color:#F3C892}
+.promoband .pb-cta.live a{color:#2F4A3C; background:#F0B466; padding:6px 16px; border-radius:99px; text-decoration:none; white-space:nowrap}
+.promoband .pb-cta.live a:hover{background:#F6C988}
+@media(max-width:700px){.promoband{padding:10px 14px} .promoband .pb-note{width:100%}}
 .appband{background:var(--soft); padding:40px 0}
 .appband .wrap{display:flex; align-items:center; gap:28px}
 .appband img{width:104px; height:104px; border-radius:24px; flex:none; box-shadow:0 6px 18px rgba(47,74,60,.18)}
