@@ -353,6 +353,8 @@ footer.site{padding-bottom:96px}
 .pa-result.good{background:#E6F2E9; border-color:#C2DECB}
 .pa-result.warn{background:#FAEDE7; border-color:#EEC8B9}
 .pa-num{font-size:20px; color:var(--head); margin:0 0 6px; line-height:1.6; font-weight:500}
+.pa-reg{margin:14px 0 0; font-size:15px; color:var(--muted)}
+.pa-reg a{color:var(--green); font-weight:500; text-decoration:underline; text-underline-offset:2px}
 html[data-theme="dark"] .pa-result.good{background:#17271D; border-color:#2C4433}
 html[data-theme="dark"] .pa-result.warn{background:#271914; border-color:#432B21}
 .ask .done{font-size:17px; color:var(--head); text-align:center; padding:24px 0; line-height:1.9}
