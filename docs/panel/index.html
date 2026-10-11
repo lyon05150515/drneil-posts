@@ -16,6 +16,12 @@
 :root{--bg:#F4F7F2;--white:#fff;--soft:#E3ECE2;--mid:#8FAE9A;--green:#4F6F5B;--head:#2F4A3C;--ink:#2F3A34;--muted:#6F7C74;--line:#D8E0D6;--warn:#8A3B2E}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"PingFang TC","Noto Sans TC",sans-serif}
+#ptr{position:fixed;top:-46px;left:50%;transform:translate(-50%,0);z-index:50;display:flex;align-items:center;gap:8px;background:var(--white);color:var(--green);border:1px solid var(--line);box-shadow:0 4px 14px rgba(47,74,60,.14);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600;opacity:0;pointer-events:none}
+#ptr.show{opacity:1;transition:opacity .15s}
+#ptr .ptr-i{display:inline-block;transition:transform .2s}
+#ptr.ready .ptr-i{transform:rotate(180deg)}
+#ptr.spin .ptr-i{animation:ptr-spin .7s linear infinite}
+@keyframes ptr-spin{to{transform:rotate(360deg)}}
 header{background:var(--head);color:#fff;padding:16px 28px;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:5}
 header h1{font-size:19px;margin:0;font-weight:600;letter-spacing:.06em}
 header a{color:#B5D4C0;font-size:14px}
@@ -216,7 +222,7 @@ const post = (u, b) => fetch(u, {method:'POST', headers:{'Content-Type':'applica
 const REMOTE = !['127.0.0.1', 'localhost'].includes(location.hostname);
 
 // 手機會一直用舊的快取頁面：每次打開／切回來就比對版本，有新版就強制重新載入
-const PANEL_V = '4d4e08da3935';
+const PANEL_V = '7a3159caaf6e';
 async function checkVersion() {
   if (!REMOTE) return;
   try {
@@ -229,6 +235,38 @@ async function checkVersion() {
 }
 checkVersion();
 document.addEventListener('visibilitychange', () => { if (!document.hidden) checkVersion(); });
+
+// 下拉重新整理：在頁面最頂往下拉超過門檻就放手 → 重新載入
+(function () {
+  const TH = 70;                         // 要拉的距離（px）
+  const ind = document.createElement('div');
+  ind.id = 'ptr';
+  ind.innerHTML = '<span class="ptr-i">↓</span><span class="ptr-t">下拉重新整理</span>';
+  document.body.appendChild(ind);
+  let startY = 0, pulling = false, dist = 0;
+  const atTop = () => (window.scrollY || document.documentElement.scrollTop || 0) <= 0;
+  const set = d => {
+    dist = d;
+    ind.style.transform = 'translate(-50%,' + Math.min(d, TH + 30) + 'px)';
+    ind.classList.toggle('ready', d >= TH);
+    ind.querySelector('.ptr-t').textContent = d >= TH ? '放開以重新整理' : '下拉重新整理';
+  };
+  addEventListener('touchstart', e => {
+    if (atTop() && e.touches.length === 1) { startY = e.touches[0].clientY; pulling = true; }
+  }, {passive: true});
+  addEventListener('touchmove', e => {
+    if (!pulling) return;
+    const d = e.touches[0].clientY - startY;
+    if (d > 0 && atTop()) { ind.classList.add('show'); set(d * 0.5); }
+    else { pulling = false; ind.classList.remove('show'); set(0); }
+  }, {passive: true});
+  addEventListener('touchend', () => {
+    if (!pulling) return;
+    pulling = false;
+    if (dist >= TH) { ind.classList.add('show', 'spin'); ind.querySelector('.ptr-t').textContent = '重新整理中…'; location.reload(); }
+    else { ind.classList.remove('show'); set(0); }
+  });
+})();
 const WP = 'https://drneil-api.drneil-tw.workers.dev/panel/';   // Cloudflare Worker（cloudflare/worker.js），2026-10-05 起不再經過舊站
 let TOKEN = '';
 try { TOKEN = localStorage.getItem('dnPanelToken') || ''; } catch (e) {}
