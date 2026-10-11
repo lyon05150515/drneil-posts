@@ -340,6 +340,21 @@ footer.site{padding-bottom:96px}
 .ask .btn[disabled]{opacity:.6; cursor:default}
 .ask .fine{font-size:14px; color:var(--muted); margin:18px 0 0; line-height:1.7}
 .ask .rq{color:#B4472E; font-weight:700; margin-left:2px}
+/* 生理年齡 PhenoAge 計算機 */
+.phenoage-calc .pa-f{display:block; margin-bottom:15px}
+.phenoage-calc .pa-f>span:first-child{display:block; font-size:15.5px; font-weight:500; color:var(--head); margin-bottom:6px}
+.phenoage-calc .pa-f i{font-style:normal; color:var(--muted); font-weight:400; font-size:13px; margin-left:4px}
+.phenoage-calc .pa-in{display:flex; gap:10px; align-items:stretch}
+.phenoage-calc .pa-in input{flex:1; min-width:0; margin-top:0}
+.phenoage-calc .unit,.phenoage-calc .unit1{flex:none; width:96px; font:inherit; font-size:15.5px; color:var(--ink); background:var(--bg); border:1.5px solid var(--line); border-radius:14px; padding:0 10px; display:flex; align-items:center; justify-content:center}
+.phenoage-calc select.unit{cursor:pointer; text-align:center}
+.phenoage-calc .unit1{color:var(--muted)}
+.pa-result{margin:22px 0 0; padding:20px 22px; border-radius:16px; background:var(--soft); border:1px solid var(--line)}
+.pa-result.good{background:#E6F2E9; border-color:#C2DECB}
+.pa-result.warn{background:#FAEDE7; border-color:#EEC8B9}
+.pa-num{font-size:20px; color:var(--head); margin:0 0 6px; line-height:1.6; font-weight:500}
+html[data-theme="dark"] .pa-result.good{background:#17271D; border-color:#2C4433}
+html[data-theme="dark"] .pa-result.warn{background:#271914; border-color:#432B21}
 .ask .done{font-size:17px; color:var(--head); text-align:center; padding:24px 0; line-height:1.9}
 .askok{text-align:center; padding:30px 0}
 @media (max-width:900px){ .ask .row{grid-template-columns:1fr; gap:0} }
