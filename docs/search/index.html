@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=e18b2148">
+<link rel="stylesheet" href="../assets/site.css?v=36337e14">
 <meta name="robots" content="noindex,follow">
 </head>
 <body>
@@ -46,7 +46,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
 <main>
 <section class="wrap listing search">
   <h1 class="plain">搜尋</h1>
-  <input id="q" type="search" placeholder="搜尋文章與商品（例如：胰島素、睡眠、鎂）" autocomplete="off">
+  <div class="searchbar"><input id="q" type="search" placeholder="搜尋文章與商品（例如：胰島素、睡眠、鎂）" autocomplete="off"><button id="qbtn" class="btn" type="button">搜尋</button></div>
   <div id="sprod"></div>
   <p class="count" id="count"></p>
   <div id="list" class="grid"></div>
@@ -106,6 +106,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   }
   qi.value = new URLSearchParams(location.search).get('q') || '';
   qi.addEventListener('input', apply);
+  document.getElementById('qbtn').addEventListener('click', () => { apply(); qi.focus(); });
+  qi.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); apply(); qi.blur(); } });
   more.addEventListener('click', () => render(false));
   cnt.textContent = '載入中…';
   fetch(BASE + 'search.json').then(r => r.json()).then(d => { D = d; apply(); })
