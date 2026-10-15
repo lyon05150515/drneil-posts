@@ -86,7 +86,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
     document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.tag === tag));
     render(true);
   }
-  qi.addEventListener('input', e => { q = e.target.value; apply(); });
   document.getElementById('qbtn').addEventListener('click', () => { q = qi.value; apply(); qi.focus(); });
   qi.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); q = qi.value; apply(); qi.blur(); } });
   document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
