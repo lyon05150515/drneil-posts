@@ -1701,3 +1701,68 @@ article.post .subbox{grid-template-columns:1fr; gap:16px}
 .nr-order button[type=submit]{margin-top:16px;width:100%}
 .nr-order .nr-done h3{color:var(--green);margin:0 0 10px}
 .nr-order .nr-done .nr-code{color:var(--green);font-size:18px;letter-spacing:.04em}
+
+/* ── 影音課程（2026-10-20）：學習地圖三層＋每堂一頁。全用站內綠色變數，深色模式自動跟著換 ── */
+.course{padding:56px 0 72px}
+.chero{text-align:center; max-width:640px; margin:0 auto 8px}
+.chero .en{color:var(--green); letter-spacing:.3em; font-size:13px; font-weight:700; margin:0 0 12px}
+.chero h1{font-family:"Noto Serif TC",serif; font-size:36px; color:var(--head); margin:0 0 14px; line-height:1.4}
+.chero p{color:var(--muted); font-size:16.5px; margin:0}
+.chero .cnow{margin-top:14px; display:inline-block; background:var(--soft); color:var(--green); font-size:14px; font-weight:600; padding:5px 16px; border-radius:99px}
+.clayer{margin-top:52px}
+.chead{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+.cno{font-family:"Noto Serif TC",serif; font-size:34px; font-weight:700; color:var(--mid); line-height:1}
+.chead h2{font-family:"Noto Serif TC",serif; font-size:24px; margin:0; color:var(--head)}
+.ctag{margin-left:auto; font-size:13px; color:var(--muted)}
+.csub{color:var(--muted); font-size:15px; margin:6px 0 20px 48px}
+.cgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px}
+.ccard{display:flex; flex-direction:column; background:var(--white); border:1px solid var(--line); border-radius:16px; overflow:hidden; color:inherit; transition:transform .15s,box-shadow .15s}
+a.ccard:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(47,74,60,.12)}
+.cthumb{position:relative; aspect-ratio:16/9; background:var(--soft); display:grid; place-items:center; overflow:hidden}
+.cthumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.cthumb .play{position:relative; width:50px; height:50px; border-radius:50%; background:rgba(255,255,255,.92); color:#4F6F5B; display:grid; place-items:center; box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.cthumb .play svg{width:22px; height:22px; margin-left:3px}
+.cthumb .dur{position:absolute; right:8px; bottom:8px; background:rgba(47,74,60,.85); color:#fff; font-size:12px; padding:2px 8px; border-radius:6px}
+.cbody{padding:14px 16px 18px; display:flex; flex-direction:column; gap:6px}
+.cep{font-size:12.5px; color:var(--green); font-weight:700; letter-spacing:.05em}
+.cbody h3{margin:0; font-size:16.5px; font-weight:600; line-height:1.45; color:var(--head)}
+.cbody p{margin:0; font-size:14px; line-height:1.65; color:var(--muted)}
+.ccard.soon{opacity:.62}
+.ccard.soon .cthumb{background:repeating-linear-gradient(135deg,var(--soft),var(--soft) 10px,var(--soft-2) 10px,var(--soft-2) 20px)}
+.ccard.soon .play{color:var(--mid)}
+.csoon{position:absolute; top:10px; left:10px; background:var(--white); border:1px solid var(--line); color:var(--muted); font-size:11.5px; font-weight:600; padding:2px 10px; border-radius:99px}
+.csoon2{display:none; color:var(--muted); font-weight:600}
+.ccta{text-align:center; margin:64px 0 24px; padding:34px 20px; background:var(--soft); border-radius:18px}
+.ccta h2{font-family:"Noto Serif TC",serif; margin:0 0 8px; font-size:21px; color:var(--head)}
+.ccta p{margin:0 0 14px; color:var(--muted); font-size:15px}
+.ccta .btn svg{width:18px; height:18px; vertical-align:-3px; margin-right:4px}
+.ctitle{font-family:"Noto Serif TC",serif; font-size:32px; line-height:1.4; color:var(--head); margin:0 0 12px}
+.ccrumb{font-size:14px; color:var(--muted); margin:0 0 10px}
+.ccrumb a{color:var(--green)}
+.cmsg{color:var(--muted); font-size:16.5px; margin:-6px 0 22px}
+.cvideo{position:relative; aspect-ratio:16/9; border-radius:14px; overflow:hidden; background:#000; box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.cvideo iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+.cnav{margin:20px 0 0; text-align:center}
+.cnav .btn{margin:6px 4px}
+.cchap{margin:40px 0 8px; padding-top:28px; border-top:1px solid var(--line)}
+.cchap ol{list-style:none; margin:0; padding:0; columns:2; column-gap:28px}
+.cchap li{break-inside:avoid; margin:0 0 6px}
+.cchap a{display:flex; gap:12px; color:var(--ink); font-size:15px; line-height:1.6; padding:4px 0}
+.cchap a:hover{color:var(--green)}
+.cchap b{color:var(--green); font-variant-numeric:tabular-nums; font-weight:600; flex:none}
+@media (max-width:640px){
+  .course{padding:36px 0 56px}
+  .chero h1{font-size:27px}
+  .ctitle{font-size:25px}
+  .chead h2{font-size:20px}
+  .cno{font-size:28px}
+  .ctag{margin-left:0; width:100%}
+  .csub{margin-left:0}
+  .cchap ol{columns:1}
+  .cgrid{gap:12px}
+  .ccard.soon .cthumb{display:none}
+  .ccard.soon .cbody{padding:12px 16px 14px}
+  .ccard.soon .cbody p{display:none}
+  .csoon2{display:inline}
+  .cnav .btn{display:block; margin:8px 0}
+}
