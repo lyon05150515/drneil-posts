@@ -64,7 +64,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   const D = window.LIST, PAGE = D.page || 12, BASE = D.base;
   const list = document.getElementById('list'), more = document.getElementById('more'),
         cnt = document.getElementById('count'), qi = document.getElementById('q');
-  let tag = decodeURIComponent((location.hash.match(/cat=([^&]+)/)||[])[1]||''), q = '', shown = 0, view = D.items;
+  // 搜尋字放在網址 ?q=，按上一頁回來還在；看到第幾筆、捲到哪裡記在 sessionStorage，回來時接著看
+  let tag = decodeURIComponent((location.hash.match(/cat=([^&]+)/)||[])[1]||''),
+      q = new URLSearchParams(location.search).get('q') || '', shown = 0, view = D.items;
+  qi.value = q;
   const h = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   function card(p){
     if (D.kind === 'tg') return '<article class="tcard"><div class="date">'+p.d+'</div><h3><a href="'+BASE+p.u+'">'+h(p.t)+'</a></h3><p>'+h(p.e)+'</p>'
@@ -84,12 +87,14 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
     const kw = q.trim().toLowerCase();
     view = D.items.filter(p => (!tag || p.g.includes(tag)) && (!kw || (p.t+' '+p.e+' '+(p.s||'')).toLowerCase().includes(kw)));
     document.querySelectorAll('.chips button').forEach(b => b.classList.toggle('on', b.dataset.tag === tag));
+    history.replaceState(null, '', location.pathname + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '')
+                                  + (tag ? '#cat=' + encodeURIComponent(tag) : ''));
     render(true);
   }
   document.getElementById('qbtn').addEventListener('click', () => { q = qi.value; apply(); qi.focus(); });
   qi.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); q = qi.value; apply(); qi.blur(); } });
   document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => {
-    tag = b.dataset.tag; history.replaceState(null, '', tag ? '#cat='+encodeURIComponent(tag) : location.pathname); apply(); }));
+    tag = b.dataset.tag; apply(); }));
   more.addEventListener('click', () => render(false));
   const sp = document.getElementById('surprise');
   if (sp) sp.addEventListener('click', () => {
@@ -99,6 +104,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
     location.href = BASE + p.u;
   });
   apply();
+  {
+    const KEY = () => 'dnPos:' + location.pathname + location.search + location.hash;
+    let st = null; try { st = JSON.parse(sessionStorage.getItem(KEY()) || 'null'); } catch(e){}
+    if (st){ while (shown < st.n && shown < view.length) render(false);
+             requestAnimationFrame(() => window.scrollTo(0, st.y)); }
+    addEventListener('pagehide', () => { try { sessionStorage.setItem(KEY(), JSON.stringify({n: shown, y: scrollY})); } catch(e){} });
+  }
 })();
 </script>
 </main>

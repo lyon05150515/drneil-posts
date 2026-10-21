@@ -109,9 +109,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   qi.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) { e.preventDefault(); apply(); qi.blur(); } });
   more.addEventListener('click', () => render(false));
   cnt.textContent = '載入中…';
-  fetch(BASE + 'search.json').then(r => r.json()).then(d => { D = d; apply(); })
+  fetch(BASE + 'search.json').then(r => r.json()).then(d => { D = d; apply(); {
+    const KEY = () => 'dnPos:' + location.pathname + location.search + location.hash;
+    let st = null; try { st = JSON.parse(sessionStorage.getItem(KEY()) || 'null'); } catch(e){}
+    if (st){ while (shown < st.n && shown < view.length) render(false);
+             requestAnimationFrame(() => window.scrollTo(0, st.y)); }
+    addEventListener('pagehide', () => { try { sessionStorage.setItem(KEY(), JSON.stringify({n: shown, y: scrollY})); } catch(e){} });
+  } })
     .catch(() => { cnt.textContent = '搜尋資料載入失敗，請重新整理再試一次'; });
-  qi.focus();
+  if (!qi.value) qi.focus();          // 從文章按上一頁回來時不要跳出鍵盤
 })();
 </script>
 </main>
