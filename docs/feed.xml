@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>思思醫師｜家醫專欄</title><link>https://drneil.tw/</link>
 <description>李思賢醫師（思思醫師）：用天然的方式打開身體的自癒能力。代謝健康、胰島素阻抗、抗老化與功能醫學。</description><language>zh-TW</language>
+<item><title>牛磺酸</title><link>https://drneil.tw/2026/10/24/taurine/</link>
+<guid>https://drneil.tw/2026/10/24/taurine/</guid>
+<pubDate>Sat, 24 Oct 2026 08:00:00 +0800</pubDate>
+<description>牛磺酸為條件性必需氨基酸，參與膽鹽製造、肌肉合成、血糖穩定與運動表現，每日補充500至3000毫克安全有效。</description></item>
 <item><title>橄欖油</title><link>https://drneil.tw/2026/10/23/olive-oil/</link>
 <guid>https://drneil.tw/2026/10/23/olive-oil/</guid>
 <pubDate>Fri, 23 Oct 2026 08:00:00 +0800</pubDate>
@@ -117,8 +121,4 @@
 <guid>https://drneil.tw/2026/09/22/cholesterol/</guid>
 <pubDate>Tue, 22 Sep 2026 08:30:20 +0800</pubDate>
 <description>膽固醇只有一種，LDL與HDL是運輸的脂蛋白，應關注小而密LDL的氧化風險而非單純膽固醇濃度。</description></item>
-<item><title>反應變慢，可能是髓鞘出了問題</title><link>https://drneil.tw/2026/09/21/myelin-repair-biohacking/</link>
-<guid>https://drneil.tw/2026/09/21/myelin-repair-biohacking/</guid>
-<pubDate>Mon, 21 Sep 2026 13:23:33 +0800</pubDate>
-<description>髓鞘決定神經訊號傳導速度，修補能力會隨年齡下降，學習、睡眠、油脂與鐵都影響髓鞘，作者也提到鋰、近紅外光與 citicoline。</description></item>
 </channel></rss>
