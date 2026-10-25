@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>思思醫師｜家醫專欄</title><link>https://drneil.tw/</link>
 <description>李思賢醫師（思思醫師）：用天然的方式打開身體的自癒能力。代謝健康、胰島素阻抗、抗老化與功能醫學。</description><language>zh-TW</language>
+<item><title>葉黃素和玉米黃素</title><link>https://drneil.tw/2026/10/25/lutein/</link>
+<guid>https://drneil.tw/2026/10/25/lutein/</guid>
+<pubDate>Sun, 25 Oct 2026 08:00:00 +0800</pubDate>
+<description>葉黃素和玉米黃素是存在於綠葉蔬菜和黃色蔬果的類胡蘿蔔素，能有效過濾藍光保護視網膜，搭配脂肪含量較高的食物食用能增加吸收效率。</description></item>
 <item><title>牛磺酸</title><link>https://drneil.tw/2026/10/24/taurine/</link>
 <guid>https://drneil.tw/2026/10/24/taurine/</guid>
 <pubDate>Sat, 24 Oct 2026 08:00:00 +0800</pubDate>
@@ -117,8 +121,4 @@
 <guid>https://drneil.tw/2026/09/22/inbody-and-muscle-mass/</guid>
 <pubDate>Tue, 22 Sep 2026 08:34:57 +0800</pubDate>
 <description>InBody 顯示肌肉量下降，在胰島素阻抗改善期常是水分與糖原排出的結果，應搭配力量、體圍與長期趨勢判斷，並固定量測條件。</description></item>
-<item><title>膽固醇的本質</title><link>https://drneil.tw/2026/09/22/cholesterol/</link>
-<guid>https://drneil.tw/2026/09/22/cholesterol/</guid>
-<pubDate>Tue, 22 Sep 2026 08:30:20 +0800</pubDate>
-<description>膽固醇只有一種，LDL與HDL是運輸的脂蛋白，應關注小而密LDL的氧化風險而非單純膽固醇濃度。</description></item>
 </channel></rss>
