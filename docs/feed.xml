@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>思思醫師｜家醫專欄</title><link>https://drneil.tw/</link>
 <description>李思賢醫師（思思醫師）：用天然的方式打開身體的自癒能力。代謝健康、胰島素阻抗、抗老化與功能醫學。</description><language>zh-TW</language>
+<item><title>血糖高峰</title><link>https://drneil.tw/2026/10/26/sugar-spikes/</link>
+<guid>https://drneil.tw/2026/10/26/sugar-spikes/</guid>
+<pubDate>Mon, 26 Oct 2026 08:00:00 +0800</pubDate>
+<description>血糖超過160的高峰引發活性氧化物質和發炎激素增加，導致慢性發炎和血管損害，應避免易引起血糖急劇升高的食物。</description></item>
 <item><title>葉黃素和玉米黃素</title><link>https://drneil.tw/2026/10/25/lutein/</link>
 <guid>https://drneil.tw/2026/10/25/lutein/</guid>
 <pubDate>Sun, 25 Oct 2026 08:00:00 +0800</pubDate>
@@ -117,8 +121,4 @@
 <guid>https://drneil.tw/2026/09/22/fiber-really-help/</guid>
 <pubDate>Tue, 22 Sep 2026 11:45:52 +0800</pubDate>
 <description>2012 年新加坡研究顯示特發性便祕患者停掉纖維後排便頻率改善，但這不代表纖維沒用，而是不是每個人都適合高纖。</description></item>
-<item><title>InBody 上掉的肌肉，可能只是水</title><link>https://drneil.tw/2026/09/22/inbody-and-muscle-mass/</link>
-<guid>https://drneil.tw/2026/09/22/inbody-and-muscle-mass/</guid>
-<pubDate>Tue, 22 Sep 2026 08:34:57 +0800</pubDate>
-<description>InBody 顯示肌肉量下降，在胰島素阻抗改善期常是水分與糖原排出的結果，應搭配力量、體圍與長期趨勢判斷，並固定量測條件。</description></item>
 </channel></rss>
