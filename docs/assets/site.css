@@ -1054,6 +1054,8 @@ html[data-theme="dark"] .bl{--bg:#1A170D; --white:#242014; --soft:#2A2516; --sof
 .bl-four .k{font-size:13.5px; letter-spacing:.14em; color:var(--green); margin:0}
 .bl-four h3{font-family:"Noto Serif TC","Songti TC",serif; font-weight:600; font-size:21px; line-height:1.5; margin:6px 0 2px}
 .bl-four .price{font-family:"Noto Serif TC","Songti TC",serif; font-size:24px; color:var(--head); margin:0 0 10px}
+.bl-four .price small{font-family:"Noto Sans TC","PingFang TC",sans-serif; font-size:13px; color:var(--bg); background:var(--head); border-radius:4px; padding:2px 7px; margin-right:8px; vertical-align:4px}
+.bl-four .price .was{display:block; font-family:"Noto Sans TC","PingFang TC",sans-serif; font-size:14px; color:var(--muted); margin-top:4px}
 .bl-four p{margin:0 0 10px; font-size:15.5px}
 .bl-four ul{margin:0 0 18px; padding-left:1.1em; font-size:15px; color:var(--muted)}
 .bl-four li{margin:3px 0}
