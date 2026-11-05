@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>思思醫師｜家醫專欄</title><link>https://drneil.tw/</link>
 <description>李思賢醫師（思思醫師）：用天然的方式打開身體的自癒能力。代謝健康、胰島素阻抗、抗老化與功能醫學。</description><language>zh-TW</language>
+<item><title>握力越強活越久？這其中有個因果陷阱</title><link>https://drneil.tw/2026/11/05/grip-strength-mortality/</link>
+<guid>https://drneil.tw/2026/11/05/grip-strength-mortality/</guid>
+<pubDate>Thu, 05 Nov 2026 08:00:00 +0800</pubDate>
+<description>握力與死亡率的穩定關聯，孟德爾隨機化分析顯示多數因果證據不足，骨折風險是唯一例外，單純訓練握力未必能降低死亡風險。</description></item>
 <item><title>甲狀腺亢進，南非醉茄可能越補越糟</title><link>https://drneil.tw/2026/11/04/hyperthyroidism/</link>
 <guid>https://drneil.tw/2026/11/04/hyperthyroidism/</guid>
 <pubDate>Wed, 04 Nov 2026 07:00:42 +0800</pubDate>
@@ -117,8 +121,4 @@
 <guid>https://drneil.tw/2026/10/05/antinutrient/</guid>
 <pubDate>Mon, 05 Oct 2026 00:18:12 +0800</pubDate>
 <description>植物中含有的抗營養素會阻礙營養吸收，素食者需了解並避開這些成分，才能維持健康的植物性飲食。</description></item>
-<item><title>尿酸越高，抗氧化力越強？</title><link>https://drneil.tw/2026/10/03/is-high-uric-acid-really-a-strong-antioxidant/</link>
-<guid>https://drneil.tw/2026/10/03/is-high-uric-acid-really-a-strong-antioxidant/</guid>
-<pubDate>Sat, 03 Oct 2026 10:02:24 +0800</pubDate>
-<description>尿酸確實是血漿中重要的抗氧化物質，但進入細胞內會促氧化，大型研究也顯示尿酸越高代謝風險越高，不能以此當作安心理由。</description></item>
 </channel></rss>
