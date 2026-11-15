@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11/16 橄欖油空運團購倒數｜思思醫師</title>
+<meta name="description" content="梅爾雷赫 × 卡薩斯花都 25/26 新油，訪廠空運限量組合。11/16 開團，時間到自動帶你到團購頁。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="11/16 橄欖油空運團購倒數｜思思醫師">
+<meta property="og:description" content="梅爾雷赫 × 卡薩斯花都 25/26 新油，訪廠空運限量組合。11/16 開團，11/25 結束。">
+<meta property="og:image" content="https://drneil.tw/assets/img/oliveoil/air2027.jpg">
+<meta property="og:url" content="https://drneil.tw/oliveoil/">
+<link rel="icon" href="../favicon.ico">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;background:#eef3ea;color:#22331f;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{background:#fff;max-width:560px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 10px 40px rgba(40,70,30,.12);text-align:center}
+.card img{width:100%;display:block;background:#f6f8f3;max-height:300px;object-fit:contain}
+.in{padding:26px 24px 30px}
+.tag{display:inline-block;background:#e3edda;color:#3d6b2a;font-size:13px;font-weight:700;letter-spacing:.08em;padding:4px 12px;border-radius:99px}
+h1{font-size:23px;margin:14px 0 6px;line-height:1.4}
+.sub{color:#5c6f55;font-size:15px;line-height:1.7}
+.cd{display:flex;justify-content:center;gap:10px;margin:24px 0 8px}
+.u{background:#3d6b2a;color:#fff;border-radius:12px;width:74px;padding:12px 0 8px}
+.u b{display:block;font-size:32px;font-variant-numeric:tabular-nums;line-height:1}
+.u span{font-size:12px;opacity:.85}
+.when{font-size:14px;color:#5c6f55;margin-bottom:20px}
+.btn{display:inline-block;background:#3d6b2a;color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:13px 34px;border-radius:99px}
+.btn.ghost{background:none;color:#3d6b2a;border:2px solid #3d6b2a;font-size:15px;padding:9px 24px;margin-top:12px}
+.info{margin-top:22px;font-size:14px;color:#5c6f55;line-height:1.9}
+.msg{font-size:18px;font-weight:700;color:#3d6b2a;margin:24px 0 16px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="../assets/img/oliveoil/air2027.jpg.webp" alt="梅爾雷赫與卡薩斯花都橄欖油">
+  <div class="in">
+    <span class="tag">空運限量・訪廠直送</span>
+    <h1>梅爾雷赫 × 卡薩斯花都<br>橄欖油團購</h1>
+    <p class="sub">兩家油廠我上個月都親自去過。<br>25/26 年新油，空運回台，數量不多。</p>
+
+    <div id="before">
+      <div class="cd">
+        <div class="u"><b id="d">0</b><span>天</span></div>
+        <div class="u"><b id="h">00</b><span>時</span></div>
+        <div class="u"><b id="m">00</b><span>分</span></div>
+        <div class="u"><b id="s">00</b><span>秒</span></div>
+      </div>
+      <p class="when">11/16（一）00:00 開團・時間到這一頁會自動帶你過去</p>
+    </div>
+
+    <div id="open" class="hide">
+      <p class="msg">開團囉！正在帶你到團購頁…</p>
+      <a class="btn" id="go" href="https://josvino.com/one/drneil0127?rstrk=drneil0127" rel="noopener sponsored">沒有自動跳轉？點這裡</a>
+    </div>
+
+    <div id="closed" class="hide">
+      <p class="msg">這次的團購已經結束了，謝謝大家！</p>
+    </div>
+
+    <p class="info">組合價 NT$5,400・免運<br>開團 11/16 – 11/25・預購制，約 12 月中到貨</p>
+    <a class="btn ghost" href="../product/oliveoil/">看油廠介紹與參訪影片</a>
+  </div>
+</div>
+<script>
+(function(){
+  // 用絕對時間（台灣時間 +08:00），不管讀者手機設在哪個時區都準
+  var OPEN = Date.parse("2026-11-16T00:00:00+08:00");
+  var END  = Date.parse("2026-11-25T23:59:59+08:00");
+  var URL  = document.getElementById("go").href;
+  var $ = function(i){return document.getElementById(i)};
+  var p = function(n){return (n<10?"0":"")+n};
+  var t;
+  function tick(){
+    var now = Date.now();
+    if (now >= END){ $("before").className="hide"; $("open").className="hide"; $("closed").className=""; clearInterval(t); return; }
+    if (now >= OPEN){
+      $("before").className="hide"; $("open").className="";
+      clearInterval(t);
+      setTimeout(function(){ location.replace(URL); }, 800);
+      return;
+    }
+    var x = Math.floor((OPEN-now)/1000);
+    $("d").textContent = Math.floor(x/86400);
+    $("h").textContent = p(Math.floor(x%86400/3600));
+    $("m").textContent = p(Math.floor(x%3600/60));
+    $("s").textContent = p(x%60);
+  }
+  tick(); t = setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
