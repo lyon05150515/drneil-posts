@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>梅爾雷赫橄欖油｜西班牙哈恩 25/26 年度新油 - 思思醫師</title>
-<meta name="description" content="陪了思思醫師五年以上的西班牙梅爾雷赫特級初榨橄欖油。2025/26 年度採收的新油，當季壓榨、空運抵台，依氣溫調整配送方式。">
-<meta property="og:title" content="梅爾雷赫橄欖油｜西班牙哈恩 25/26 年度新油">
-<meta property="og:description" content="陪了思思醫師五年以上的西班牙梅爾雷赫特級初榨橄欖油。2025/26 年度採收的新油，當季壓榨、空運抵台，依氣溫調整配送方式。">
+<title>梅爾雷赫橄欖油｜西班牙哈恩 26/27 年度新油 - 思思醫師</title>
+<meta name="description" content="陪了思思醫師五年以上的西班牙梅爾雷赫特級初榨橄欖油。2026/27 年度採收的新油，當季壓榨、空運抵台，依氣溫調整配送方式。">
+<meta property="og:title" content="梅爾雷赫橄欖油｜西班牙哈恩 26/27 年度新油">
+<meta property="og:description" content="陪了思思醫師五年以上的西班牙梅爾雷赫特級初榨橄欖油。2026/27 年度採收的新油，當季壓榨、空運抵台，依氣溫調整配送方式。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="思思醫師">
 <meta property="og:image" content="https://drneil.tw/assets/img/oliveoil/cover.jpg">
@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/site.css?v=ccc39537">
+<link rel="stylesheet" href="../../assets/site.css?v=c267885e">
 
 </head>
 <body>
@@ -50,11 +50,16 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   <div class="wrap">
     <span class="pb-tag">空運限量</span>
     <b class="pb-name">梅爾雷赫 × 卡薩斯花都 橄欖油團購</b>
-    <span class="pb-note">訪廠空運版・25/26 新油・數量稀少</span>
+    <span class="pb-note">訪廠空運版・26/27 新油・數量稀少</span>
     <span class="pb-cta" id="pb-cta"></span>
+    <button type="button" class="pb-x" id="pb-x" aria-label="關閉這則預告">×</button>
   </div>
   <script>(function(){
     var b=document.getElementById('promoband'); if(!b) return;
+    // 讀者按 × 就收起來，同一檔團購（以開團日為鍵）之後換頁也不再出現
+    var key='pbx-'+(b.dataset.open||'');
+    try{ if(localStorage.getItem(key)) return; }catch(_){}
+    document.getElementById('pb-x').onclick=function(){ b.hidden=true; try{localStorage.setItem(key,'1');}catch(_){} };
     var cta=document.getElementById('pb-cta');
     var url=b.dataset.url, btn=b.dataset.btn;
     function parse(s){var m=(s||'').split('-'); return m.length===3 ? new Date(+m[0],+m[1]-1,+m[2]) : null;}
@@ -76,7 +81,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
     <p class="crumbs"><a href="../../shop/">思思推薦</a> / 強健推薦</p>
     <p class="en" style="margin-top:14px">Extra Virgin Olive Oil</p>
     <h1>梅爾雷赫橄欖油</h1>
-    <p class="sub">西班牙哈恩・25/26 年度新油</p>
+    <p class="sub">西班牙哈恩・26/27 年度新油</p>
     <p class="lede">陪了我五年以上的橄欖油。來自西班牙哈恩省的梅爾雷赫家族，今年的新油當季壓榨、空運抵台。</p>
     <a class="btn" href="https://josvino.com/one/drneilofficial" target="_blank" rel="noopener sponsored">前往訂購</a>
     <p class="cf-note">會連到進口商喬詩的思思醫師專頁，由喬詩出貨。</p>
@@ -89,11 +94,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   <div class="ol-air">
     <img src="../../assets/img/oliveoil/air2027.jpg.webp" alt="卡薩斯花都兩瓶與梅爾雷赫 Premium 系列四瓶橄欖油" loading="lazy">
     <div class="in">
-      <p class="k">25/26 年度採收・預購</p>
+      <p class="k">26/27 年度採收・預購</p>
       <h3>梅爾雷赫 × 卡薩斯花都</h3>
       <p><b>卡薩斯花都</b>（Casas de Hualdo）在西班牙托雷多，橄欖採收後六小時內完成壓榨。</p>
       <p><b>梅爾雷赫</b>（Melgarejo）在西班牙哈恩，1780 年起家族經營。</p>
-      <p class="price">組合價 NT$5,400<small>　免運</small></p>
+      <p class="price">免運</p>
       <p class="small">預購制，預計 2026 年 12 月中到貨。</p>
       <div id="air-cta" data-open="2026-11-16" data-url="https://josvino.com/one/drneil0127?rstrk=drneil0127"><span class="soon">11/16 開團</span></div>
     </div>
@@ -163,7 +168,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
 <section class="block white"><div class="wrap">
   <div class="ol-head"><p class="en">Fresh Harvest</p><h2>今年的新油怎麼到你手上</h2></div>
   <div class="ol-facts">
-    <div><h3>當季壓榨</h3><p>所有品項都是 2025/26 年度採收的新油。</p></div>
+    <div><h3>當季壓榨</h3><p>所有品項都是 2026/27 年度採收的新油。</p></div>
     <div><h3>空運抵台</h3><p>從西班牙原廠直送，用空運保留剛榨好的果香。</p></div>
     <div><h3>看氣溫配送</h3><p>當日氣溫 33°C 以上改冷藏配送，32°C 以下常溫配送。</p></div>
   </div>

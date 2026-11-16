@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../../../assets/site.css?v=ccc39537">
+<link rel="stylesheet" href="../../../../assets/site.css?v=c267885e">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "膽固醇 700 維持七年，斑塊是零的特殊案例", "datePublished": "2026-05-25T14:20:11+08:00", "image": "https://drneil.tw/media/2026/05/cholesterol-700-seven-years-zero-plaque-cover-900.jpg", "description": "一位總膽固醇 705 mg/dL 的男性維持近七年，電腦斷層顯示斑塊體積為 0 mm³，作者以此個案介紹 LMHR 與脂質能量模型。", "author": {"@type": "Person", "name": "李思賢醫師（思思醫師）", "url": "https://drneil.tw/about/"}, "publisher": {"@type": "Person", "name": "思思醫師"}, "mainEntityOfPage": "https://drneil.tw/2026/05/25/cholesterol-700-seven-years-zero-plaque/"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://drneil.tw/"}, {"@type": "ListItem", "position": 2, "name": "家醫專欄", "item": "https://drneil.tw/column/"}, {"@type": "ListItem", "position": 3, "name": "膽固醇 700 維持七年，斑塊是零的特殊案例", "item": "https://drneil.tw/2026/05/25/cholesterol-700-seven-years-zero-plaque/"}]}</script>
 </head>
 <body>
@@ -51,11 +51,16 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   <div class="wrap">
     <span class="pb-tag">空運限量</span>
     <b class="pb-name">梅爾雷赫 × 卡薩斯花都 橄欖油團購</b>
-    <span class="pb-note">訪廠空運版・25/26 新油・數量稀少</span>
+    <span class="pb-note">訪廠空運版・26/27 新油・數量稀少</span>
     <span class="pb-cta" id="pb-cta"></span>
+    <button type="button" class="pb-x" id="pb-x" aria-label="關閉這則預告">×</button>
   </div>
   <script>(function(){
     var b=document.getElementById('promoband'); if(!b) return;
+    // 讀者按 × 就收起來，同一檔團購（以開團日為鍵）之後換頁也不再出現
+    var key='pbx-'+(b.dataset.open||'');
+    try{ if(localStorage.getItem(key)) return; }catch(_){}
+    document.getElementById('pb-x').onclick=function(){ b.hidden=true; try{localStorage.setItem(key,'1');}catch(_){} };
     var cta=document.getElementById('pb-cta');
     var url=b.dataset.url, btn=b.dataset.btn;
     function parse(s){var m=(s||'').split('-'); return m.length===3 ? new Date(+m[0],+m[1]-1,+m[2]) : null;}
