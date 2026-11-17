@@ -1796,3 +1796,89 @@ a.ccard:hover{transform:translateY(-3px); box-shadow:0 10px 24px rgba(47,74,60,.
 .shopfeat .sf-when{font-weight:600; color:var(--deep)}
 .shopfeat .sf-btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:6px}
 @media(max-width:700px){.shopfeat{grid-template-columns:1fr} .shopfeat img{max-height:240px}}
+
+/* 呼吸小站 /breathe/（2026-11-17） */
+.breathe-tool{text-align:center}
+.bt-en{margin:0; font-size:13.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--green)}
+.bt-sub{color:var(--muted); font-size:16.5px; line-height:1.9}
+.bt-focus{position:relative; margin:18px auto 6px; border-radius:24px; overflow:hidden;
+  background:linear-gradient(160deg,#F1F6EE 0%,#E4EEE0 55%,#DCE9D8 100%); padding:30px 16px}
+.bt-focus.on{position:fixed; inset:0; z-index:9999; margin:0; border-radius:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; touch-action:none; -webkit-user-select:none; user-select:none}
+body.bt-lock{overflow:hidden}
+.bt-main{position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:34px; flex-wrap:wrap}
+.bt-stage{position:relative; width:min(300px,72vw); aspect-ratio:1}
+.bt-focus.on .bt-stage{width:min(380px,74vw,52vh)}
+.bt-guide{position:absolute; inset:0; border-radius:50%; border:1.5px dashed rgba(79,111,91,.28)}
+.bt-ball{position:absolute; inset:0; border-radius:50%; transform-origin:center; will-change:transform;
+  background:radial-gradient(circle at 38% 34%,#C9DDC5 0%,#8FB49A 48%,#5E8669 100%);
+  box-shadow:0 0 40px rgba(94,134,105,.35), inset 0 -10px 30px rgba(47,74,60,.18)}
+.bt-label{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; text-shadow:0 1px 6px rgba(47,74,60,.35)}
+.bt-label b{font-size:26px; letter-spacing:.2em; font-weight:600}
+.bt-label span{font-size:15px; margin-top:4px; font-variant-numeric:tabular-nums}
+.bt-focus.on .bt-label span{font-size:22px}
+.bt-count{display:flex; flex-direction:column; align-items:center; color:var(--head); min-width:90px}
+.bt-count b{font-size:56px; line-height:1; font-weight:300; font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif; font-variant-numeric:tabular-nums}
+.bt-count span{font-size:14px; letter-spacing:.15em; color:var(--muted); margin-top:6px}
+.bt-count small{font-size:13px; color:var(--muted); margin-top:10px; font-variant-numeric:tabular-nums; min-height:1em}
+.bt-panel{position:relative; z-index:2; margin-top:26px; background:rgba(255,255,255,.82); backdrop-filter:blur(6px);
+  border-radius:16px; padding:16px 22px; box-shadow:0 6px 24px rgba(47,74,60,.12)}
+.bt-panel p{margin:0 0 12px; color:var(--head)}
+.bt-panel .btn{margin:0 4px}
+.bt-focus:not(.on) .bt-panel{display:none}
+/* 微風：大片柔光慢慢飄，小光點像被風吹過 */
+.bt-breeze{position:absolute; inset:0; pointer-events:none; overflow:hidden}
+.bt-breeze i{position:absolute; width:70%; aspect-ratio:1; border-radius:50%; filter:blur(50px); opacity:.55}
+.bt-breeze i:nth-child(1){background:#FFFFFF; top:-25%; left:-20%; animation:btDrift 26s ease-in-out infinite alternate}
+.bt-breeze i:nth-child(2){background:#CFE3C8; bottom:-30%; right:-25%; animation:btDrift 32s ease-in-out infinite alternate-reverse}
+.bt-breeze i:nth-child(3){background:#E9F2D9; top:30%; left:40%; width:45%; animation:btDrift 22s ease-in-out infinite alternate}
+.bt-breeze s{position:absolute; left:-6%; width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.9);
+  box-shadow:0 0 8px rgba(255,255,255,.9); animation:btWind 18s linear infinite}
+.bt-breeze s:nth-of-type(1){top:18%; animation-delay:0s}
+.bt-breeze s:nth-of-type(2){top:34%; animation-delay:-6s; animation-duration:22s}
+.bt-breeze s:nth-of-type(3){top:52%; animation-delay:-11s}
+.bt-breeze s:nth-of-type(4){top:68%; animation-delay:-3s; animation-duration:25s}
+.bt-breeze s:nth-of-type(5){top:80%; animation-delay:-15s; animation-duration:20s}
+.bt-breeze s:nth-of-type(6){top:10%; animation-delay:-9s; animation-duration:28s}
+@keyframes btDrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(18%,10%) scale(1.15)}}
+@keyframes btWind{0%{transform:translate(0,0); opacity:0}10%{opacity:.8}50%{transform:translate(55vw,-18px)}90%{opacity:.6}100%{transform:translate(110vw,8px); opacity:0}}
+.bt-focus.paused .bt-breeze *{animation-play-state:paused}
+.bt-ctl{margin-top:18px}
+.bt-len{display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:16px}
+.bt-len button{border:1.5px solid var(--green); background:transparent; color:var(--green); border-radius:99px; padding:6px 16px; font-size:15px; cursor:pointer; font-family:inherit}
+.bt-len button.on{background:var(--green); color:var(--bg)}
+.bt-go{font-size:18px; padding:12px 46px; cursor:pointer}
+.bt-opt{display:flex; justify-content:center; gap:22px; margin-top:16px; color:var(--muted); font-size:15px}
+.bt-opt input{margin-right:4px; accent-color:var(--green)}
+.bt-hint{font-size:13.5px; color:var(--muted); margin-top:10px}
+.bt-article h2{font-size:21px; color:var(--head); margin:30px 0 10px}
+.bt-note{background:#EEF3EA; border-radius:12px; padding:14px 18px; font-size:15px; color:var(--muted)}
+.bt-refs{font-size:14.5px; line-height:1.9}
+@media (max-width:600px){ .bt-main{flex-direction:column; gap:18px} .bt-count b{font-size:44px} }
+@media (prefers-reduced-motion:reduce){ .bt-breeze *{animation:none} }
+/* 呼吸小站：字體加清楚（Neil 11-17） */
+.bt-ball{background:radial-gradient(circle at 38% 34%,#A9C9A6 0%,#6F9A7B 45%,#4A7257 100%)}
+.bt-label b{font-size:30px; font-weight:700; letter-spacing:.18em; text-shadow:0 2px 8px rgba(30,50,38,.55)}
+.bt-label span{font-size:20px; font-weight:600; text-shadow:0 1px 6px rgba(30,50,38,.55)}
+.bt-focus.on .bt-label b{font-size:38px}
+.bt-focus.on .bt-label span{font-size:26px}
+.bt-count{color:#22382C}
+.bt-count b{font-weight:600; font-size:64px}
+.bt-count span{font-size:16px; font-weight:600; color:#3E5A49}
+.bt-count small{font-size:15px; font-weight:500; color:#3E5A49}
+.bt-sub{color:#3E5A49; font-size:17.5px}
+.bt-hint, .bt-opt{color:#4A5E52}
+.bt-panel p{font-size:17px; font-weight:500}
+/* 健康工具 /tools/ 與兩個工具頁上方切換鈕 */
+.tooltabs{margin-bottom:26px}
+.toolcards{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:28px}
+.toolcard{display:flex; flex-direction:column; align-items:center; text-align:center; background:#F3F7F1; border-radius:20px; padding:30px 24px; color:var(--ink); transition:transform .2s, box-shadow .2s}
+.toolcard:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(47,74,60,.12); color:var(--ink)}
+.toolcard h2{font-size:22px; color:var(--head); margin:16px 0 8px}
+.toolcard p{font-size:15.5px; color:#4A5E52; flex:1; margin:0 0 18px}
+.tc-ico{width:84px; height:84px; border-radius:50%; display:flex; align-items:center; justify-content:center}
+.tc-breathe{background:radial-gradient(circle at 38% 34%,#A9C9A6 0%,#6F9A7B 45%,#4A7257 100%); box-shadow:0 0 0 10px rgba(111,154,123,.18); animation:tcBreathe 10s ease-in-out infinite}
+.tc-pheno{background:var(--green); color:#fff; font-weight:700; font-size:22px; letter-spacing:.05em; font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif}
+@keyframes tcBreathe{0%,100%{transform:scale(.82)}50%{transform:scale(1)}}
+@media (max-width:700px){ .toolcards{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ .tc-breathe{animation:none} }
