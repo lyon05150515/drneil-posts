@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=456206ad">
+<link rel="stylesheet" href="../assets/site.css?v=66d15e31">
 
 </head>
 <body>
@@ -46,10 +46,15 @@ document.addEventListener('pointerdown',function(e){if(b.classList.contains('nav
 document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})();</script>
 <main>
 <section class="block white"><div class="wrap narrow breathe-tool">
-  <div class="tabs tooltabs"><a href="../breathe/" class="on">舒壓小站</a><a href="../phenoage/">生理年齡</a></div>
+  <div class="tabs tooltabs"><a href="../breathe/" class="on">舒壓小站</a><a href="../insulin/">胰島素阻抗</a><a href="../sarcopenia/">肌少症檢測</a><a href="../phenoage/">生理年齡</a></div>
   
   <h1 class="lead big">舒壓小站</h1>
-  <p class="bt-sub">圓圈變大的時候吸氣，變小的時候吐氣。<br>一次 10 秒，一分鐘 6 次。</p>
+  <div class="bt-mode" role="group" aria-label="呼吸模式">
+    <button type="button" data-mode="even" class="on">平衡呼吸<small>吸 5・吐 5</small></button>
+    <button type="button" data-mode="long">短吸長吐<small>吸 4・吐 6</small></button>
+    <button type="button" data-mode="sigh">生理嘆息<small>吸・補吸・長吐</small></button>
+  </div>
+  <p class="bt-sub" id="btDesc">圓圈變大的時候吸氣，變小的時候吐氣。<br>吸 5 秒、吐 5 秒，一分鐘 6 次。</p>
 
   <div class="bt-focus" id="btFocus">
     <div class="bt-breeze" aria-hidden="true"><i></i><i></i><i></i><s></s><s></s><s></s><s></s><s></s><s></s></div>
@@ -93,11 +98,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
 <p>2005 年《Hypertension》的研究讓高血壓病人練習慢呼吸，<b>血壓下降，壓力反射也變得比較敏感</b>。2012 年一篇統合分析整理了 8 個「裝置引導呼吸」的試驗、494 位成人，<b>收縮壓平均下降 3.67 mmHg、舒張壓下降 2.51 mmHg</b>。不過作者也提醒，扣掉跟廠商有關的研究之後，效果就不明顯了。所以慢呼吸是很好的輔助，<b>但不能拿來取代降血壓藥</b>。</p>
 <p>焦慮的證據比較強。2017 年《Psychological Medicine》的統合分析，整理 24 個研究、484 人，心率變異度呼吸訓練對壓力和焦慮的改善，<b>效果量（Hedges' g）達 0.83</b>，算是相當大的效果。2018 年一篇系統性回顧也發現，一分鐘少於 10 次的慢呼吸，跟心率變異度上升、焦慮與憂鬱下降有關。2023 年史丹佛大學的 Balban 團隊比較每天 5 分鐘的呼吸練習和正念冥想，<b>刻意把吐氣拉長的呼吸法</b>，情緒改善最多，呼吸速率也降得最多。</p>
 <p>不只眼睛，皮膚也可以帶著你呼吸。2017 年《Scientific Reports》的研究，讓受試者在準備上台演講前，手腕戴上一個會發出<b>比自己心跳還慢的震動</b>的裝置，結果焦慮感和皮膚電反應的上升都比較少。如果你用的是 Android 手機，可以打開下面的「手機震動提示」，閉上眼睛跟著震動呼吸（iPhone 的網頁目前不支援震動）。</p>
+<h2>三種模式，怎麼選？</h2>
+<p><b>平衡呼吸（吸 5、吐 5）</b>：最基本的共振呼吸，吸和吐一樣長，適合第一次練習，或平常每天固定做。</p>
+<p><b>短吸長吐（吸 4、吐 6）</b>：一樣一分鐘 6 次，只是把吐氣拉長。吐氣的時候心跳會稍微變慢，很多呼吸練習都會刻意讓吐氣比吸氣長。覺得緊張、心跳很快的時候可以試試。</p>
+<p><b>生理嘆息（吸氣、再補吸一小口、長長吐氣）</b>：就是前面提到 Balban 團隊研究裡效果最好的方法，他們叫它<b>週期性嘆息（Cyclic Sighing）</b>。用鼻子吸氣，快吸飽時再補吸一小口，然後從嘴巴慢慢把氣吐完。研究裡受試者是每天做 5 分鐘，連續一個月。</p>
 <h2>怎麼做</h2>
 <p>1. 坐好或躺下，肩膀放鬆，手可以放在肚子上。<br>
 2. 圓圈變大的時候用鼻子慢慢吸氣，讓肚子鼓起來；圓圈變小的時候慢慢吐氣。<br>
 3. 不用吸得很滿，七、八分就好。<b>吐氣慢一點，比用力吸氣更重要。</b><br>
-4. 不想看螢幕的話，打開音樂引導、閉上眼睛：<b>高的鈴聲、音樂慢慢升起是吸氣；低的鈴聲、音樂慢慢落下是吐氣</b>。也可以打開語音口令。<br>
+4. 不想看螢幕的話，打開音樂引導、閉上眼睛：<b>高的鈴聲、音樂慢慢升起是吸氣；低的鈴聲、音樂慢慢落下是吐氣</b>；生理嘆息模式補吸那一口時，會再響一聲更高、更短的鈴。也可以打開語音口令。<br>
 5. 練習時只要點到螢幕、滑動畫面或切到別的 App，就會暫停。這段時間，就只陪著自己呼吸。</p>
 <p>工作空檔做 3 分鐘，睡前做 5 到 10 分鐘，都很適合。</p>
 <p class="bt-note">如果覺得頭暈、喘不過氣，就恢復平常的呼吸。這是放鬆練習，不是醫療處置；有高血壓或焦慮困擾的人，請持續跟你的醫師追蹤，不要自己停藥。</p>
@@ -125,17 +134,36 @@ document.querySelectorAll('.hbuy,.buyfab').forEach(function(el){
 <script>if(location.hostname==='drneil.tw')try{var o=location.hash==='#o';navigator.sendBeacon('https://drneil-api.drneil-tw.workers.dev/hit',new URLSearchParams({path:location.pathname,old:o?1:0}));if(o)history.replaceState(null,'',location.pathname+location.search)}catch(e){}</script>
 <script>
 (function(){
-  var IN=5000, OUT=5000, CYC=IN+OUT;          // 吸 5 秒、吐 5 秒 = 一分鐘 6 次
+  // 三種模式（Neil 2026-11-17）：每個循環都是 10 秒＝一分鐘 6 次，只是吸吐的分配不同
+  // 每個階段：[口令, 毫秒, 起始大小(0~1), 結束大小(0~1), 鈴聲頻率, 震動]
+  var MODES={
+    even:{desc:'圓圈變大的時候吸氣，變小的時候吐氣。<br>吸 5 秒、吐 5 秒，一分鐘 6 次。',
+          ph:[['吸氣',5000,0,1,659.25,80],['吐氣',5000,1,0,440,[40,90,40]]]},
+    long:{desc:'吸氣短一點、吐氣長一點。<br>吸 4 秒、吐 6 秒，一樣一分鐘 6 次。',
+          ph:[['吸氣',4000,0,1,659.25,80],['吐氣',6000,1,0,440,[40,90,40]]]},
+    sigh:{desc:'用鼻子吸氣，快吸飽時再補吸一小口，<br>然後慢慢、長長地吐氣。一次 10 秒，一分鐘 6 次。',
+          ph:[['吸氣',3000,0,.86,659.25,80],['再吸一口',1000,.86,1,783.99,50],['吐氣',6000,1,0,440,[40,90,40]]]}
+  };
+  var mode='even', CYC=10000;
   var $=function(i){return document.getElementById(i)};
   var F=$('btFocus'), ball=$('btBall'), word=$('btWord'), sec=$('btSec'), cnt=$('btCount'), left=$('btLeft'),
       panel=$('btPanel'), pmsg=$('btPanelMsg'), resume=$('btResume');
   var mins=3, state='idle', t0=0, el0=0, raf=0, lastPhase=-1, wake=null, ac=null, armed=0;
   var MINS=0.42;
-  function scale(p){ return MINS+(1-MINS)*(1-Math.cos(2*Math.PI*p))/2; }   // p:0→1 一個循環，0.5 最大
+  function ease(x){ return (1-Math.cos(Math.PI*x))/2; }
+  function at(c){                              // 循環內第 c 毫秒 → [第幾階段, 該階段剩幾毫秒, 大小 0~1]
+    var ph=MODES[mode].ph, t=c;
+    for(var i=0;i<ph.length;i++){ if(t<ph[i][1]){ var x=t/ph[i][1]; return [i, ph[i][1]-t, ph[i][2]+(ph[i][3]-ph[i][2])*ease(x)]; } t-=ph[i][1]; }
+    return [ph.length-1, 0, ph[ph.length-1][3]];
+  }
   function mmss(ms){ var s=Math.max(0,Math.ceil(ms/1000)); return Math.floor(s/60)+':'+('0'+s%60).slice(-2); }
   function setBall(k){ ball.style.transform='scale('+k+')'; }
   setBall(MINS);
   if (navigator.vibrate) $('btVibWrap').hidden=false;
+  document.querySelectorAll('.bt-mode button').forEach(function(b){
+    b.onclick=function(){ document.querySelectorAll('.bt-mode button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on'); mode=b.dataset.mode; $('btDesc').innerHTML=MODES[mode].desc; };
+  });
   document.querySelectorAll('.bt-len button').forEach(function(b){
     b.onclick=function(){ document.querySelectorAll('.bt-len button').forEach(function(x){x.classList.remove('on')});
       b.classList.add('on'); mins=+b.dataset.min; };
@@ -195,13 +223,13 @@ document.querySelectorAll('.hbuy,.buyfab').forEach(function(el){
   function frame(now){
     var el=now-t0, total=mins*60000;
     if(el>=total){ cnt.textContent=mins*6; finish(); return; }
-    var c=el%CYC, inhale=c<IN, k=scale(c/CYC);
+    var r=at(el%CYC), P=MODES[mode].ph[r[0]], k=MINS+(1-MINS)*r[2];
     setBall(k);
-    word.textContent= inhale? '吸氣' : '吐氣';
-    sec.textContent= Math.ceil((inhale? IN-c : CYC-c)/1000);
+    word.textContent=P[0];
+    sec.textContent=Math.ceil(r[1]/1000);
     cnt.textContent= Math.floor(el/CYC);
     left.textContent='還有 '+mmss(total-el);
-    var ph=inhale?0:1; if(ph!==lastPhase){ lastPhase=ph; vib(inhale? 80 : [40,90,40]); bell(inhale? 659.25 : 440); say(inhale? '吸氣' : '吐氣'); }
+    if(r[0]!==lastPhase){ lastPhase=r[0]; vib(P[5]); bell(P[4]); say(P[0]); }
     breathAudio((k-MINS)/(1-MINS));
     raf=requestAnimationFrame(frame);
   }
