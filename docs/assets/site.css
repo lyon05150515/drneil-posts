@@ -1882,3 +1882,5 @@ body.bt-lock{overflow:hidden}
 @keyframes tcBreathe{0%,100%{transform:scale(.82)}50%{transform:scale(1)}}
 @media (max-width:700px){ .toolcards{grid-template-columns:1fr} }
 @media (prefers-reduced-motion:reduce){ .tc-breathe{animation:none} }
+.chero .cnews{margin-top:12px; font-size:15.5px; color:var(--ink)}
+.chero .cnews a{font-weight:700; border-bottom:1.5px solid currentColor}
