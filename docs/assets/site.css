@@ -1884,3 +1884,6 @@ body.bt-lock{overflow:hidden}
 @media (prefers-reduced-motion:reduce){ .tc-breathe{animation:none} }
 .chero .cnews{margin-top:12px; font-size:15.5px; color:var(--ink)}
 .chero .cnews a{font-weight:700; border-bottom:1.5px solid currentColor}
+.promoband.pb-click{cursor:pointer; transition:background .2s}
+.promoband.pb-click:hover{filter:brightness(1.15)}
+.promoband.pb-click:hover .pb-cta.live a{background:#F6C988}

@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/site.css?v=c3efdbda">
+<link rel="stylesheet" href="../../assets/site.css?v=456206ad">
 
 </head>
 <body>
@@ -73,6 +73,11 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
       if(url){ cta.innerHTML='<a href="'+url+'" target="_blank" rel="noopener sponsored">'+(dd===0?'今天開團':'團購進行中')+' · '+btn+' →</a>'; }
       else { cta.textContent=(dd===0?'今天開團':'團購進行中'); }
       cta.className='pb-cta live'; b.hidden=false;
+      // 整條都可以點（Neil 2026-11-17），只有 × 例外
+      if(url){ b.classList.add('pb-click'); b.setAttribute('role','link'); b.tabIndex=0;
+        var go=function(){ window.open(url,'_blank','noopener'); };
+        b.addEventListener('click',function(ev){ if(ev.target.closest('.pb-x, a')) return; go(); });
+        b.addEventListener('keydown',function(ev){ if((ev.key==='Enter'||ev.key===' ') && ev.target===b){ ev.preventDefault(); go(); } }); }
     }
   })();</script>
 </section><div class="nr">
