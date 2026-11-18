@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel><title>思思醫師｜家醫專欄</title><link>https://drneil.tw/</link>
 <description>李思賢醫師（思思醫師）：用天然的方式打開身體的自癒能力。代謝健康、胰島素阻抗、抗老化與功能醫學。</description><language>zh-TW</language>
+<item><title>方形呼吸</title><link>https://drneil.tw/2026/11/18/square-breathing/</link>
+<guid>https://drneil.tw/2026/11/18/square-breathing/</guid>
+<pubDate>Wed, 18 Nov 2026 08:00:00 +0800</pubDate>
+<description>方形呼吸法透過吸氣四秒、屏氣四秒、吐氣四秒的循環進行，能有效緩解焦慮、穩定血壓並增強專注力。</description></item>
 <item><title>牙齒的重要成分，hydroxyapatite</title><link>https://drneil.tw/2026/11/16/hydroxyapatite/</link>
 <guid>https://drneil.tw/2026/11/16/hydroxyapatite/</guid>
 <pubDate>Mon, 16 Nov 2026 08:00:00 +0800</pubDate>
@@ -117,8 +121,4 @@
 <guid>https://drneil.tw/2026/10/06/dna-methylation-aging/</guid>
 <pubDate>Tue, 06 Oct 2026 17:52:07 +0800</pubDate>
 <description>DNA甲基化會隨老化出現表觀遺傳漂移，目前只有飲食、睡眠與代謝介入等生活方式被證實能減緩甲基化老化速度。</description></item>
-<item><title>腸道菌的比例是健康的關鍵</title><link>https://drneil.tw/2026/10/05/fb-ratio-gut-health/</link>
-<guid>https://drneil.tw/2026/10/05/fb-ratio-gut-health/</guid>
-<pubDate>Mon, 05 Oct 2026 16:17:39 +0800</pubDate>
-<description>F:B 比值是 Firmicutes 與 Bacteroidetes 的比例，過高或過低各代表不同的腸道狀態，可從原型食物、多樣纖維、睡眠與壓力調整。</description></item>
 </channel></rss>
