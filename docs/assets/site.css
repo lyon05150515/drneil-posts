@@ -1929,3 +1929,104 @@ body.bt-lock{overflow:hidden}
   .vd-ball{width:150px; height:150px}
 }
 .vd-steps div{background:var(--bg)}
+
+/* ── 讀者回饋 /feedback/（2026-11-18）：卡片牆＋留言表單（沿用 .ask） ── */
+.fb-top .en{margin:0}
+.fb-top h1{margin:8px 0 14px}
+.fb-top p{color:var(--muted)}
+.fb-top .btn{margin-top:10px}
+.fb-wall{columns:3 300px; column-gap:22px}
+.fb-card{break-inside:avoid; margin:0 0 22px; background:var(--white); border-radius:var(--r); padding:28px 26px 22px; position:relative; border:1px solid var(--line)}
+.fb-card::before{content:"“"; position:absolute; top:6px; left:20px; font-family:"Noto Serif TC","Songti TC",serif; font-size:54px; line-height:1; color:var(--mid); opacity:.7}
+.fb-card blockquote{margin:14px 0 16px; color:var(--ink); font-size:16.5px; line-height:1.85}
+.fb-card blockquote p{margin:0 0 10px}
+.fb-card blockquote p:last-child{margin:0}
+.fb-card figcaption{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 6px; font-size:14.5px; color:var(--muted); border-top:1px solid var(--line); padding-top:12px}
+.fb-card figcaption b{color:var(--head); font-weight:500; font-size:15.5px}
+.fb-card time{margin-left:auto; font-size:13.5px}
+.block.white .fb-card{background:var(--bg)}
+.fb-empty{color:var(--muted); padding:20px 0}
+.ask select{display:block; width:100%; margin-top:6px; padding:13px 16px; font:inherit; font-size:17px; font-weight:400; color:var(--ink);
+  border:1.5px solid var(--line); border-radius:14px; background:var(--bg); outline:none; -webkit-appearance:none; appearance:none}
+.ask select:focus{border-color:var(--green); background:var(--white)}
+.ask label.chk{display:flex; gap:10px; align-items:flex-start; font-weight:400; color:var(--ink); cursor:pointer}
+.ask label.chk input{width:20px; height:20px; margin:4px 0 0; flex:none; accent-color:var(--green)}
+
+/* 讀者入口三頁（reader_pages.py，2026-11-21）：從這裡開始／問思思醫師／我的代謝體檢表 */
+.hero-btns{display:flex; gap:12px; flex-wrap:wrap}
+.st-lead{color:var(--muted)}
+.st-picks{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; margin:30px 0 10px}
+.st-pick{display:flex; justify-content:space-between; align-items:center; gap:10px; background:#F3F7F1; border:1.5px solid transparent; border-radius:16px; padding:16px 20px; color:var(--head)}
+.st-pick b{font-weight:500; line-height:1.5}
+.st-pick span{font-size:13.5px; color:var(--muted); white-space:nowrap}
+.st-pick:hover, .st-pick.on{border-color:var(--green); background:var(--white); color:var(--head)}
+.st-pick.on{box-shadow:0 6px 20px rgba(47,74,60,.10)}
+.st-path{margin-top:38px; padding-top:30px; border-top:1px solid var(--line); scroll-margin-top:90px}
+.st-path h2{color:var(--head); font-size:24px; margin:0 0 6px}
+.st-sub{color:#4A5E52}
+.st-prog{display:flex; align-items:center; gap:14px; margin:14px 0 6px; font-size:14.5px; color:var(--green)}
+.st-bar{flex:1; height:8px; border-radius:99px; background:var(--soft); overflow:hidden}
+.st-bar i{display:block; height:100%; width:0; background:var(--green); border-radius:99px; transition:width .3s}
+.st-steps{list-style:none; padding:0; margin:18px 0 0}
+.st-step{display:grid; grid-template-columns:38px 1fr auto; gap:14px; align-items:start; padding:16px 0; border-bottom:1px solid var(--line)}
+.st-n{width:34px; height:34px; border-radius:50%; background:var(--soft); color:var(--green-d); display:flex; align-items:center; justify-content:center; font-weight:600; font-size:15px; margin-top:2px}
+.st-step.done .st-n{background:var(--green); color:var(--bg)}
+.st-txt a{font-size:18px; font-weight:500; color:var(--head); line-height:1.6}
+.st-txt p{margin:4px 0 0; font-size:15px; color:var(--muted); line-height:1.75}
+.st-step.done .st-txt a{color:var(--green)}
+.st-done{display:flex; align-items:center; gap:6px; font-size:14px; color:var(--muted); white-space:nowrap; cursor:pointer; margin-top:6px}
+.st-done input{width:18px; height:18px; accent-color:var(--green)}
+.st-vids{margin-top:24px; background:#F3F7F1; border-radius:16px; padding:18px 22px}
+.st-vids .k{margin:0 0 8px; font-size:14.5px; color:var(--green-d)}
+.st-vid{display:block; padding:6px 0; color:var(--head)}
+.st-vid span{display:inline-block; min-width:64px; font-size:13.5px; color:var(--green); margin-right:6px}
+.st-next{text-align:center; margin-top:28px}
+.st-next p{color:var(--muted); margin:0 0 10px}
+.st-next .btn{margin:4px 5px}
+@media (max-width:600px){ .st-step{grid-template-columns:34px 1fr} .st-done{grid-column:2} }
+
+.ask-row{display:flex; gap:10px}
+.ask-row input{flex:1; margin:0}
+.ask-row .btn{white-space:nowrap}
+.ask-try{text-align:center; margin:18px 0 0; font-size:14.5px; color:var(--muted)}
+.ask-chips{margin-top:6px}
+#ask-out{margin-top:30px}
+.ask-wait{text-align:center; color:var(--muted)}
+.ask-q{font-size:19px; color:var(--head); font-weight:500; margin:0 0 14px}
+.ask-card{background:#F3F7F1; border-radius:18px; padding:22px 26px; margin:0 0 16px}
+.ask-card .k{margin:0; font-size:14.5px; color:var(--green-d); font-weight:500}
+.ask-h{margin:4px 0 0; font-size:14px; color:var(--muted)}
+.ask-card blockquote{margin:12px 0 10px; padding:0 0 0 16px; border-left:3px solid var(--mid)}
+.ask-card blockquote p{margin:0 0 8px; font-size:16.5px; line-height:1.9}
+.ask-card mark{background:#DCEBD8; color:inherit; padding:0 1px; border-radius:3px}
+.ask-more{font-size:15px; font-weight:500}
+.ask-miss{background:#F3F7F1; border-radius:18px; padding:24px 26px}
+.ask-miss h2{color:var(--head); font-size:22px; margin:0 0 6px}
+.ask-miss .k{margin:16px 0 4px; font-size:14.5px; color:var(--green-d)}
+.ask-miss ul{margin:0; padding-left:20px}
+@media (max-width:600px){ .ask-row{flex-direction:column} }
+
+.ck-sex{border:0; padding:0; margin:0 0 16px}
+.ck-sex legend{font-size:15.5px; font-weight:500; color:var(--head); margin-bottom:6px}
+.ck-sex label{display:inline-flex; align-items:center; gap:6px; margin-right:22px; font-weight:400}
+.ck-sex input{width:auto; margin:0; accent-color:var(--green)}
+.ck-result .pa-num b{font-weight:600}
+.ck-g{color:var(--green)} .ck-y{color:#8A6414} .ck-r{color:#8A3B2E}
+.ck-row{display:grid; grid-template-columns:1fr auto auto; gap:2px 14px; align-items:baseline; padding:14px 0 12px; border-top:1px solid var(--line)}
+.ck-name{font-weight:500; color:var(--head)}
+.ck-val{font-size:18px; color:var(--head); text-align:right}
+.ck-d{display:block; font-size:12.5px; color:var(--muted)}
+.ck-d.up{color:var(--green)} .ck-d.down{color:#8A3B2E}
+.ck-tag{font-size:13px; padding:2px 10px; border-radius:99px; background:#DCEBD8; color:var(--green-d); white-space:nowrap}
+.ck-row.y .ck-tag{background:#F5E8C8; color:#7A5414}
+.ck-row.r .ck-tag{background:#F6DCD0; color:#8A3B2E}
+.ck-note{grid-column:1/-1; font-size:14.5px; color:#4A5E52; line-height:1.75}
+.ck-note a{margin-left:4px}
+.ck-act{text-align:center; margin-top:20px}
+.ck-hist{margin-top:30px}
+.ck-hist h2{color:var(--head); font-size:21px}
+.ck-tbl{overflow-x:auto}
+.ck-tbl table{border-collapse:collapse; width:100%; font-size:14.5px; white-space:nowrap}
+.ck-tbl th,.ck-tbl td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:center}
+.ck-tbl th{color:var(--green-d); font-weight:500; background:#F3F7F1}
+@media print{ header, footer, .ck-act, .tooltabs, #ckform, .bt-article, .fine{display:none !important} }

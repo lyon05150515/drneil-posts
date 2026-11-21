@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>健康工具｜舒壓小站、胰島素阻抗、肌少症檢測、生理年齡 - 思思醫師</title>
+<title>健康工具｜代謝體檢表、舒壓小站、胰島素阻抗、肌少症檢測、生理年齡 - 思思醫師</title>
 <meta name="description" content="思思醫師的健康小工具：舒壓呼吸引導、胰島素阻抗計算機、肌少症自我檢測、生理年齡 PhenoAge 計算機。全部在瀏覽器裡完成，不上傳資料。">
-<meta property="og:title" content="健康工具｜舒壓小站、胰島素阻抗、肌少症檢測、生理年齡">
+<meta property="og:title" content="健康工具｜代謝體檢表、舒壓小站、胰島素阻抗、肌少症檢測、生理年齡">
 <meta property="og:description" content="思思醫師的健康小工具：舒壓呼吸引導、胰島素阻抗計算機、肌少症自我檢測、生理年齡 PhenoAge 計算機。全部在瀏覽器裡完成，不上傳資料。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="思思醫師">
@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=8e86225b">
+<link rel="stylesheet" href="../assets/site.css?v=ee2cefa0">
 
 </head>
 <body>
@@ -49,6 +49,12 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
   <h1 class="lead big" style="text-align:center">健康工具</h1>
   <p style="text-align:center;color:var(--muted)">幾個小工具，都在瀏覽器裡完成，不會上傳任何資料。</p>
   <div class="toolcards">
+    <a class="toolcard" href="../checkup/">
+      <span class="tc-ico tc-pheno" aria-hidden="true">表</span>
+      <h2>我的代謝體檢表</h2>
+      <p>把健檢的腰圍、血壓、血糖、胰島素、血脂，加上握力和爬樓梯秒數填進來，用燈號看哪幾格值得留意。</p>
+      <span class="btn">開始填寫</span>
+    </a>
     <a class="toolcard" href="../breathe/">
       <span class="tc-ico tc-breathe" aria-hidden="true"></span>
       <h2>舒壓小站</h2>
@@ -91,7 +97,7 @@ document.querySelectorAll('.hbuy,.buyfab').forEach(function(el){
   <p class="soc"><a href="https://www.facebook.com/dr.neillee/" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/neillee7911/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCnXuYL4MkLagrs1G86lZvkQ" target="_blank" rel="noopener">YouTube</a><a href="https://t.me/drneil_health" target="_blank" rel="noopener">Telegram</a></p>
   <p class="disc">本站內容為健康知識分享，不能取代醫師診斷與治療。</p>
   <p class="copy">Copyright © 2026 思思醫師 All rights reserved.</p>
-  <p class="cite-link"><a href="../cite/">媒體・機構引用或轉載本站文章，請先提出申請</a></p>
+  <p class="cite-link"><a href="../ask/">問思思醫師</a>　・　<a href="../feedback/">讀者回饋</a>　・　<a href="../cite/">媒體・機構引用或轉載本站文章，請先提出申請</a></p>
 </footer>
 <script>if(location.hostname==='drneil.tw')try{var o=location.hash==='#o';navigator.sendBeacon('https://drneil-api.drneil-tw.workers.dev/hit',new URLSearchParams({path:location.pathname,old:o?1:0}));if(o)history.replaceState(null,'',location.pathname+location.search)}catch(e){}</script>
 </body>

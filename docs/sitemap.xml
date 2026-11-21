@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://drneil.tw/</loc></url>
+<url><loc>https://drneil.tw/start/</loc></url>
+<url><loc>https://drneil.tw/ask/</loc></url>
+<url><loc>https://drneil.tw/checkup/</loc></url>
 <url><loc>https://drneil.tw/about/</loc></url>
+<url><loc>https://drneil.tw/feedback/</loc></url>
 <url><loc>https://drneil.tw/column/</loc></url>
 <url><loc>https://drneil.tw/channel/</loc></url>
 <url><loc>https://drneil.tw/shop/</loc></url>
