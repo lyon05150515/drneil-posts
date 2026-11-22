@@ -2030,3 +2030,5 @@ body.bt-lock{overflow:hidden}
 .ck-tbl th,.ck-tbl td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:center}
 .ck-tbl th{color:var(--green-d); font-weight:500; background:#F3F7F1}
 @media print{ header, footer, .ck-act, .tooltabs, #ckform, .bt-article, .fine{display:none !important} }
+.appnext{display:block; font-style:normal; font-size:14px; margin-top:4px; color:var(--green); font-weight:700}
+.st-path .appcard{margin:22px 0 0}
