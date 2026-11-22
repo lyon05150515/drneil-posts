@@ -444,22 +444,24 @@ document.querySelectorAll('.hbuy,.buyfab').forEach(function(el){
   function hm(ms){ var d=new Date(ms+8*3600e3); return ('0'+d.getUTCHours()).slice(-2)+':'+('0'+d.getUTCMinutes()).slice(-2); }
   function md(ms){ var d=new Date(ms+8*3600e3); return (d.getUTCMonth()+1)+'/'+d.getUTCDate()+'（'+'日一二三四五六'[d.getUTCDay()]+'）'; }
   function show(t){ els.forEach(function(e){ e.textContent=t; e.hidden=false; }); }
-  function pick(ev, nx){
-    var now=Date.now(), s, h;
+  function pick(ev, nx, lv){
+    var now=Date.now(), s, h, MIN=10;   // 人數少於 MIN 不顯示（剛開放報名時只有個位數，看起來冷清）
+    var pre=lv&&v(lv.prejoin)||{}, cnt=function(id){ var n=+v(pre[id])||0; return n>=MIN?'・已有 '+n+' 人報名':''; };
     if(ev){ s=Date.parse(v(ev.startAt)); h=+v(ev.durationH)||0;
-      if(s<=now && now<s+h*3600e3) return '現在正在進行：'+(v(ev.name)||h+' 小時斷食')+'，'+md(s+h*3600e3)+hm(s+h*3600e3)+' 結束，現在加入也可以';
+      var np=lv&&v(lv.eventId)===v(ev.eventId)?+v(lv.people)||0:0;
+      if(s<=now && now<s+h*3600e3) return '現在正在進行：'+(v(ev.name)||h+' 小時斷食')+(np>=MIN?'，'+np+' 人參加中':'')+'，'+md(s+h*3600e3)+hm(s+h*3600e3)+' 結束，現在加入也可以';
     }
     var c=[];
-    if(ev && s>now) c.push({s:s, h:h, n:v(ev.name)});
-    (nx && v(nx.list) || []).forEach(function(x){ x=x.mapValue.fields; var t=Date.parse(v(x.startAt)); if(t>now) c.push({s:t, h:+v(x.durationH), n:v(x.name)}); });
+    if(ev && s>now) c.push({s:s, h:h, n:v(ev.name), k:np>=MIN?'・已有 '+np+' 人報名':''});
+    (nx && v(nx.list) || []).forEach(function(x){ x=x.mapValue.fields; var t=Date.parse(v(x.startAt)); if(t>now) c.push({s:t, h:+v(x.durationH), n:v(x.name), k:cnt(v(x.eventId))}); });
     c.sort(function(a,b){ return a.s-b.s; });
     if(!c.length) return '';
-    return '下一場：'+md(c[0].s)+hm(c[0].s)+' 開始・'+c[0].h+' 小時斷食';
+    return '下一場：'+md(c[0].s)+hm(c[0].s)+' 開始・'+c[0].h+' 小時斷食'+(c[0].k||'');
   }
   try{ var o=JSON.parse(sessionStorage.getItem(K)||'null'); if(o && Date.now()-o.t<6e5){ if(o.x) show(o.x); return; } }catch(e){}
-  Promise.all(['event','next'].map(function(id){ return fetch(B+id).then(function(r){ return r.ok?r.json():null; }).catch(function(){ return null; }); }))
+  Promise.all(['event','next','live'].map(function(id){ return fetch(B+id).then(function(r){ return r.ok?r.json():null; }).catch(function(){ return null; }); }))
   .then(function(r){
-    var x=pick(r[0]&&r[0].fields, r[1]&&r[1].fields); if(x) show(x);
+    var x=pick(r[0]&&r[0].fields, r[1]&&r[1].fields, r[2]&&r[2].fields); if(x) show(x);
     try{ sessionStorage.setItem(K, JSON.stringify({t:Date.now(), x:x})); }catch(e){}
   }).catch(function(){});
 })();
