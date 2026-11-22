@@ -2032,3 +2032,4 @@ body.bt-lock{overflow:hidden}
 @media print{ header, footer, .ck-act, .tooltabs, #ckform, .bt-article, .fine{display:none !important} }
 .appnext{display:block; font-style:normal; font-size:14px; margin-top:4px; color:var(--green); font-weight:700}
 .st-path .appcard{margin:22px 0 0}
+.appband .appnext{font-size:15.5px; margin-top:8px}

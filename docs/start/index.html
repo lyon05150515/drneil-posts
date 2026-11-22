@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css?v=a4953ca9">
+<link rel="stylesheet" href="../assets/site.css?v=1aafe0dc">
 
 </head>
 <body>
@@ -437,7 +437,7 @@ document.querySelectorAll('.hbuy,.buyfab').forEach(function(el){
 <script>if(location.hostname==='drneil.tw')try{var o=location.hash==='#o';navigator.sendBeacon('https://drneil-api.drneil-tw.workers.dev/hit',new URLSearchParams({path:location.pathname,old:o?1:0}));if(o)history.replaceState(null,'',location.pathname+location.search)}catch(e){}</script>
 <script>
 (function(){
-  // 空腹小雞的 config/event、config/next 規則本來就開放匿名讀取（App 開賽前頁面要用）；只讀時間，不讀任何人的資料
+  // 空腹小雞的 config/event、next、live 開放匿名讀取；只有時間與人數，沒有任何人的資料
   var els=document.querySelectorAll('.appnext'); if(!els.length) return;
   var K='dn_fast40', B='https://firestore.googleapis.com/v1/projects/neil-fast40/databases/(default)/documents/config/';
   function v(f){ if(!f) return null; for(var k in f) return k==='mapValue'?f[k].fields:k==='arrayValue'?(f[k].values||[]):f[k]; }

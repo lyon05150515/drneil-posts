@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/site.css?v=a4953ca9">
+<link rel="stylesheet" href="./assets/site.css?v=1aafe0dc">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "李思賢", "alternateName": "思思醫師", "honorificSuffix": "醫師", "jobTitle": "高雄初日診所 院長", "url": "https://drneil.tw/about/", "image": "https://drneil.tw/assets/photo/about.jpg", "sameAs": ["https://www.facebook.com/dr.neillee/", "https://www.instagram.com/neillee7911/", "https://www.youtube.com/channel/UCnXuYL4MkLagrs1G86lZvkQ", "https://t.me/drneil_health"], "worksFor": {"@type": "MedicalClinic", "name": "初日診所", "address": "高雄市左營區自由二路220號", "telephone": "07-550-7551"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "思思醫師", "url": "https://drneil.tw/"}</script><link rel="preload" as="image" href="./assets/photo/hero.jpg.webp">
 </head>
 <body>
@@ -103,7 +103,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')shut()})})()
 
 <section class="appband"><div class="wrap">
   <img src="./assets/img/chick.png.webp" alt="" loading="lazy">
-  <div class="txt"><p class="en">My app</p><h2>空腹小雞｜跟思思醫師一起斷食，順便養一隻小雞</h2><p>這是我自己做的斷食小工具：大家約好同一段時間一起斷食，你撐得越久，小雞就長得越好。有心情打卡、小測驗，完成還有完賽證書。用手機瀏覽器打開就能玩。</p></div>
+  <div class="txt"><p class="en">My app</p><h2>空腹小雞｜跟思思醫師一起斷食，順便養一隻小雞</h2><p>這是我自己做的斷食小工具：大家約好同一段時間一起斷食，你撐得越久，小雞就長得越好。有心情打卡、小測驗，完成還有完賽證書。用手機瀏覽器打開就能玩。</p><em class="appnext" hidden></em></div>
   <a class="btn" href="https://neil-fast40.web.app/" target="_blank" rel="noopener">來養小雞</a>
 </div></section>
 
@@ -294,6 +294,37 @@ document.querySelectorAll('.subbox').forEach(function(box){
       }).catch(function(){ btn.disabled = false; msg.textContent = '送出失敗，請稍後再試一次'; });
   });
 });
+</script>
+<script>
+(function(){
+  // 空腹小雞的 config/event、next、live 開放匿名讀取；只有時間與人數，沒有任何人的資料
+  var els=document.querySelectorAll('.appnext'); if(!els.length) return;
+  var K='dn_fast40', B='https://firestore.googleapis.com/v1/projects/neil-fast40/databases/(default)/documents/config/';
+  function v(f){ if(!f) return null; for(var k in f) return k==='mapValue'?f[k].fields:k==='arrayValue'?(f[k].values||[]):f[k]; }
+  function hm(ms){ var d=new Date(ms+8*3600e3); return ('0'+d.getUTCHours()).slice(-2)+':'+('0'+d.getUTCMinutes()).slice(-2); }
+  function md(ms){ var d=new Date(ms+8*3600e3); return (d.getUTCMonth()+1)+'/'+d.getUTCDate()+'（'+'日一二三四五六'[d.getUTCDay()]+'）'; }
+  function show(t){ els.forEach(function(e){ e.textContent=t; e.hidden=false; }); }
+  function pick(ev, nx, lv){
+    var now=Date.now(), s, h, MIN=10;   // 人數少於 MIN 不顯示（剛開放報名時只有個位數，看起來冷清）
+    var pre=lv&&v(lv.prejoin)||{}, cnt=function(id){ var n=+v(pre[id])||0; return n>=MIN?'・已有 '+n+' 人報名':''; };
+    if(ev){ s=Date.parse(v(ev.startAt)); h=+v(ev.durationH)||0;
+      var np=lv&&v(lv.eventId)===v(ev.eventId)?+v(lv.people)||0:0;
+      if(s<=now && now<s+h*3600e3) return '現在正在進行：'+(v(ev.name)||h+' 小時斷食')+(np>=MIN?'，'+np+' 人參加中':'')+'，'+md(s+h*3600e3)+hm(s+h*3600e3)+' 結束，現在加入也可以';
+    }
+    var c=[];
+    if(ev && s>now) c.push({s:s, h:h, n:v(ev.name), k:np>=MIN?'・已有 '+np+' 人報名':''});
+    (nx && v(nx.list) || []).forEach(function(x){ x=x.mapValue.fields; var t=Date.parse(v(x.startAt)); if(t>now) c.push({s:t, h:+v(x.durationH), n:v(x.name), k:cnt(v(x.eventId))}); });
+    c.sort(function(a,b){ return a.s-b.s; });
+    if(!c.length) return '';
+    return '下一場：'+md(c[0].s)+hm(c[0].s)+' 開始・'+c[0].h+' 小時斷食'+(c[0].k||'');
+  }
+  try{ var o=JSON.parse(sessionStorage.getItem(K)||'null'); if(o && Date.now()-o.t<6e5){ if(o.x) show(o.x); return; } }catch(e){}
+  Promise.all(['event','next','live'].map(function(id){ return fetch(B+id).then(function(r){ return r.ok?r.json():null; }).catch(function(){ return null; }); }))
+  .then(function(r){
+    var x=pick(r[0]&&r[0].fields, r[1]&&r[1].fields, r[2]&&r[2].fields); if(x) show(x);
+    try{ sessionStorage.setItem(K, JSON.stringify({t:Date.now(), x:x})); }catch(e){}
+  }).catch(function(){});
+})();
 </script>
 </body>
 </html>
